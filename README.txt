@@ -1,4 +1,4 @@
-Ansible playbooks to setup personal infrastructure.
+Ansible playbooks for personal infrastructure.
 
 
 INSTALL
