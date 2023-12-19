@@ -1,0 +1,7 @@
+- name: Install essential tools
+  ansible.builtin.package:
+    name:
+      - vim
+      - screen
+      - git
+    state: present
