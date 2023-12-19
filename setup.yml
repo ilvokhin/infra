@@ -1,4 +1,4 @@
 - name: Basic setup for all hosts
   hosts: all
   roles:
-    - { role: basic }
+    - { role: essential }

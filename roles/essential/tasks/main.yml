@@ -1,7 +1,8 @@
-- name: Install basic tools
+- name: Install essential tools
   ansible.builtin.package:
     name:
       - vim
       - screen
       - git
+      - which
     state: present

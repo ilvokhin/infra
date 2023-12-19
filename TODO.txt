@@ -4,6 +4,7 @@ ANSIBLE
 * Is there a way to make playbooks cross-platform? For example have same setup
   for CentOS and Arch Linux? Is it possible to extend it to macOS?
 * Figure out directory structure.
+* How to bootstrap python?
 
 
 DISTRIBUTION
