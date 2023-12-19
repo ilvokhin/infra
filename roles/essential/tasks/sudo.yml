@@ -9,7 +9,6 @@
     dest: /etc/sudoers
     state: present
     regexp: '^(# )?%wheel ALL=\(ALL:ALL\) NOPASSWD: ALL'
-    # insertafter: '^# %wheel ALL=\(ALL:ALL\) NOPASSWD: ALL'
     line: '%wheel ALL=(ALL:ALL) NOPASSWD: ALL'
     validate: "visudo -cf %s"
     owner: root
