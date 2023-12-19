@@ -3,6 +3,11 @@
     name: arch
     state: absent
 
+- name: Remove default centos user
+  ansible.builtin.user:
+    name: centos
+    state: absent
+
 - name: Create user for Dmitry Ilvokhin
   ansible.builtin.user:
     name: d
