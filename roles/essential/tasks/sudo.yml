@@ -1,0 +1,17 @@
+- name: Install sudo
+  ansible.builtin.package:
+    name:
+      - sudo
+    state: present
+
+- name: Allow wheel group to use sudo
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^(# )?%wheel ALL=\(ALL:ALL\) NOPASSWD: ALL'
+    insertafter: '^# %wheel ALL=\(ALL:ALL\) NOPASSWD: ALL'
+    line: '%wheel ALL=(ALL:ALL) NOPASSWD: ALL'
+    validate: "visudo -cf %s"
+    owner: root
+    group: root
+    mode: u+r,g+r,o-rwx
