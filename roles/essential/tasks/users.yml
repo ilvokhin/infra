@@ -1,12 +1,9 @@
-- name: Remove default arch user
+- name: Remove default users
   ansible.builtin.user:
-    name: arch
+    name: '{{ item }}'
     state: absent
-
-- name: Remove default centos user
-  ansible.builtin.user:
-    name: centos
-    state: absent
+  loop:
+    - arch
 
 - name: Create user for Dmitry Ilvokhin
   ansible.builtin.user:
