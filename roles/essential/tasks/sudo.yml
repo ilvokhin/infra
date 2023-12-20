@@ -14,3 +14,18 @@
     owner: root
     group: root
     mode: u+r,g+r,o-rwx
+
+- name: Use hard-coded PATH instead of the user's to find commands
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    state: present
+    # Double quotes are important here if we want to break the line on multiple
+    # lines, as escaping doesn't work with single quotes.
+    regexp: "^(# )?Defaults secure_path=\"/usr/local/sbin:/usr/local/bin:\
+            /usr/sbin:/usr/bin:/sbin:/bin\""
+    line: "Defaults secure_path=\"/usr/local/sbin:/usr/local/bin:\
+           /usr/sbin:/usr/bin:/sbin:/bin\""
+    validate: "visudo -cf %s"
+    owner: root
+    group: root
+    mode: u+r,g+r,o-rwx
