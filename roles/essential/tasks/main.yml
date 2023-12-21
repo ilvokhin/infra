@@ -1,3 +1,4 @@
-- ansible.builtin.include_tasks: roles/essential/tasks/packages.yml
-- ansible.builtin.include_tasks: roles/essential/tasks/users.yml
-- ansible.builtin.include_tasks: roles/essential/tasks/sudo.yml
+- ansible.builtin.import_tasks: roles/essential/tasks/packages.yml
+- ansible.builtin.import_tasks: roles/essential/tasks/users.yml
+- ansible.builtin.import_tasks: roles/essential/tasks/sudo.yml
+- ansible.builtin.import_tasks: roles/essential/tasks/atop.yml

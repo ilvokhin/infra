@@ -1,0 +1,38 @@
+- name: Install atop
+  ansible.builtin.package:
+    name:
+      - atop
+    state: present
+
+- name: Setup per-minute atop snapshot
+  ansible.builtin.lineinfile:
+    dest: /etc/default/atop
+    state: present
+    regexp: '^#?LOGINTERVAL='
+    line: 'LOGINTERVAL=60'
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Restart atop
+
+- name: Setup logrotate to save 7 days of logs for atop
+  ansible.builtin.lineinfile:
+    dest: /etc/default/atop
+    state: present
+    regexp: '^#?LOGGENERATIONS='
+    line: 'LOGGENERATIONS=7'
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Restart atop
+
+- name: Enable atop systemd unit and logrotate timer
+  ansible.builtin.service:
+    name: '{{ item }}'
+    enabled: yes
+    state: started
+  loop:
+    - atop
+    - atop-rotate.timer

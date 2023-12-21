@@ -1,0 +1,4 @@
+- name: Restart atop
+  ansible.builtin.service:
+    name: atop
+    state: restarted
