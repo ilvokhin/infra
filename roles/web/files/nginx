@@ -1,0 +1,12 @@
+/var/log/nginx/*log {
+	missingok
+	notifempty
+	create 640 http root
+	daily
+	rotate 14
+	sharedscripts
+	compress
+	postrotate
+		test ! -r /run/nginx.pid || kill -USR1 `cat /run/nginx.pid`
+	endscript
+}

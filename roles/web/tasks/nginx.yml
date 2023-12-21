@@ -27,8 +27,14 @@
     dest: /etc/nginx/nginx.conf
     owner: root
     group: root
-    mode: u+rw,g+,o+r
+    mode: u+rw,g+r,o+r
   notify:
     - Reload nginx
 
-# TODO: logrotate
+- name: Configure nginx logrotate
+  ansible.builtin.copy:
+    src: roles/web/files/nginx
+    dest: /etc/logrotate.d/nginx
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r

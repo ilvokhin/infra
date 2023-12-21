@@ -2,3 +2,8 @@
   hosts: all
   roles:
     - { role: essential }
+
+- name: Basic setup for all hosts
+  hosts: web
+  roles:
+    - { role: web }
