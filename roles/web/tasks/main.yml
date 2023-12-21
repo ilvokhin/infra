@@ -1,0 +1,1 @@
+- ansible.builtin.import_tasks: roles/web/tasks/nginx.yml
