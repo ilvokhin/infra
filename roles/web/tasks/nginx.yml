@@ -4,7 +4,7 @@
       - nginx
     state: present
 
-- name: Enable nginx systemd unit 
+- name: Enable nginx systemd service
   ansible.builtin.service:
     name: nginx
     enabled: yes
@@ -23,7 +23,7 @@
 
 - name: Configure nginx
   ansible.builtin.copy:
-    src: roles/web/files/nginx.conf
+    src: roles/web/files/nginx/nginx.conf
     dest: /etc/nginx/nginx.conf
     owner: root
     group: root
@@ -33,7 +33,7 @@
 
 - name: Configure nginx logrotate
   ansible.builtin.copy:
-    src: roles/web/files/nginx
+    src: roles/web/files/nginx/nginx.logrotate
     dest: /etc/logrotate.d/nginx
     owner: root
     group: root

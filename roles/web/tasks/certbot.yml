@@ -1,0 +1,27 @@
+- name: Install certbot
+  ansible.builtin.package:
+    name:
+      - certbot
+    state: present
+
+- name: Configure certbot systemd service
+  ansible.builtin.copy:
+    src: roles/web/files/certbot/certbot.service
+    dest: /usr/lib/systemd/system
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+- name: Configure certbot systemd timer
+  ansible.builtin.copy:
+    src: roles/web/files/certbot/certbot.timer
+    dest: /usr/lib/systemd/system
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+- name: Enable certbot systemd timer
+  ansible.builtin.service:
+    name: certbot.timer
+    enabled: yes
+    state: started

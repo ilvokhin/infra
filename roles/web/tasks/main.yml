@@ -1,2 +1,3 @@
 - ansible.builtin.import_tasks: roles/web/tasks/logrotate.yml
 - ansible.builtin.import_tasks: roles/web/tasks/nginx.yml
+- ansible.builtin.import_tasks: roles/web/tasks/certbot.yml

@@ -28,7 +28,7 @@
   notify:
     - Restart atop
 
-- name: Enable atop systemd unit and logrotate timer
+- name: Enable atop systemd service and logrotate timer
   ansible.builtin.service:
     name: '{{ item }}'
     enabled: yes
