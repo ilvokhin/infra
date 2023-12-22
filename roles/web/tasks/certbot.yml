@@ -1,8 +1,11 @@
-- name: Install certbot
+- name: Install certbot packages
   ansible.builtin.package:
     name:
-      - certbot
+      - '{{ item }}'
     state: present
+  loop:
+    - certbot
+    - certbot-nginx
 
 - name: Configure certbot systemd service
   ansible.builtin.copy:
