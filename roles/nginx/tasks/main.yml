@@ -31,9 +31,8 @@
   notify:
     - Reload nginx
 
-- name: Install logrotate
-  ansible.builtin.include_role:
-    name: logrotate
+- ansible.builtin.include_role:
+  name: logrotate
 
 - name: Configure nginx logrotate
   ansible.builtin.copy:
