@@ -1,0 +1,4 @@
+- name: Essential setup for all hosts
+  hosts: all
+  roles:
+    - { role: minimal }
