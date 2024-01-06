@@ -1,0 +1,15 @@
+- name: Request SSL certificate from Let's Encrypt
+  shell: |
+    # Make task independent: if nginx is already running, stop it and then
+    # start back on exit.
+    [ -f /var/run/nginx.pid ] && systemctl stop nginx
+    trap "systemctl start nginx" EXIT
+    certbot certonly \
+        --standalone \
+        --agree-tos \
+        --renew-by-default \
+        --email webmaster@ilvokhin.com \
+        --rsa-key-size 4096 \
+        -d {{ domains | join(' -d ') }}
+  args:
+    creates: '/etc/letsencrypt/live/{{ domains | first }}/fullchain.pem'

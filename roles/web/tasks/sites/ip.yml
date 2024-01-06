@@ -1,0 +1,7 @@
+- name: Configure nginx for ip.ilvokhin.com
+  ansible.builtin.copy:
+    src: roles/web/files/sites/ip.ilvokhin.com
+    dest: /etc/nginx/sites-available
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
