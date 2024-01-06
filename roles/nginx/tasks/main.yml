@@ -23,7 +23,7 @@
 
 - name: Configure nginx
   ansible.builtin.copy:
-    src: roles/web/files/nginx/nginx.conf
+    src: files/nginx.conf
     dest: /etc/nginx/nginx.conf
     owner: root
     group: root
@@ -31,9 +31,13 @@
   notify:
     - Reload nginx
 
+- name: Install logrotate
+  ansible.builtin.include_role:
+    name: logrotate
+
 - name: Configure nginx logrotate
   ansible.builtin.copy:
-    src: roles/web/files/nginx/nginx.logrotate
+    src: files/nginx.logrotate
     dest: /etc/logrotate.d/nginx
     owner: root
     group: root
