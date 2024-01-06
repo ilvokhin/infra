@@ -32,7 +32,7 @@
     - Reload nginx
 
 - ansible.builtin.include_role:
-  name: logrotate
+    name: logrotate
 
 - name: Configure nginx logrotate
   ansible.builtin.copy:

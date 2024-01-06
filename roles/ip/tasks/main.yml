@@ -1,5 +1,5 @@
 - ansible.builtin.include_role:
-  name: nginx
+    name: nginx
 
 - name: Configure nginx for ip.ilvokhin.com
   ansible.builtin.copy:

@@ -1,5 +1,5 @@
 - ansible.builtin.include_role:
-  name: certbot
+    name: certbot
 
 - name: Request SSL certificate from Let's Encrypt
   shell: |
