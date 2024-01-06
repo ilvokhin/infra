@@ -10,4 +10,4 @@ $ pip3 install -r requirements.txt
 
 RUN
 
-$ ansible-playbook setup.yml
+$ ansible-playbook essential.yml

@@ -1,9 +1,0 @@
-- name: Basic setup for all hosts
-  hosts: all
-  roles:
-    - { role: essential }
-
-- name: Setup web hosts
-  hosts: web
-  roles:
-    - { role: web }
