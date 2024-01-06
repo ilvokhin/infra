@@ -1,4 +1,4 @@
-- name: Install essential tools
+- name: Install minimal tools
   ansible.builtin.package:
     name:
       - vim
