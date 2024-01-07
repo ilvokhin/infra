@@ -11,3 +11,8 @@ $ pip3 install -r requirements.txt
 RUN
 
 $ ansible-playbook playbooks/essential.yml
+
+
+REFERENCES
+
+[1]: https://gitlab.archlinux.org/archlinux/infrastructure
