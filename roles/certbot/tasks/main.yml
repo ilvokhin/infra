@@ -1,15 +1,14 @@
-- name: Install certbot packages
+- name: Install certbot package
   ansible.builtin.package:
     name:
       - '{{ item }}'
     state: present
   loop:
     - certbot
-    - certbot-nginx
 
 - name: Configure certbot systemd service
   ansible.builtin.copy:
-    src: files/certbot/certbot.service
+    src: files/certbot.service
     dest: /usr/lib/systemd/system
     owner: root
     group: root
@@ -17,7 +16,7 @@
 
 - name: Configure certbot systemd timer
   ansible.builtin.copy:
-    src: files/certbot/certbot.timer
+    src: files/certbot.timer
     dest: /usr/lib/systemd/system
     owner: root
     group: root

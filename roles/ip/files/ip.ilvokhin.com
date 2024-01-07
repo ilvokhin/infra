@@ -9,8 +9,6 @@ server {
     listen 443 ssl;
     ssl_certificate /etc/letsencrypt/live/ip.ilvokhin.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/ip.ilvokhin.com/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 }
 
 # Do not redirect to https to get a plain output for `curl ip.ilvokhin.com`

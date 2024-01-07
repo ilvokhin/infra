@@ -1,3 +1,11 @@
+- name: Request SSL certificate for ip.ilvokhin.com
+  ansible.builtin.include_role:
+    name: certificate
+  vars:
+    domains:
+      - ip.ilvokhin.com
+      - www.ip.ilvokhin.com
+
 - ansible.builtin.include_role:
     name: nginx
 
@@ -8,3 +16,16 @@
     owner: root
     group: root
     mode: u+rw,g+r,o+r
+  notify:
+    - Reload nginx
+
+- name: Enable ip.ilvokhin.com site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/ip.ilvokhin.com
+    dest: /etc/nginx/sites-enabled/ip.ilvokhin.com
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+    state: link
+  notify:
+    - Reload nginx

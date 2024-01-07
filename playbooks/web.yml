@@ -1,4 +1,5 @@
 - name: Essential setup for all hosts
   hosts: web
   roles:
-    - { role: nginx }
+    # Websites
+    # - { role: ip }
