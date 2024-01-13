@@ -11,6 +11,7 @@
     home: /home/d
     groups:
       - wheel
+      - http
 
 - name: Setup SSH directory for Dmitry Ilvokhin
   ansible.builtin.file:

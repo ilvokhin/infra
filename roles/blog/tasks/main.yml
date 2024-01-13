@@ -1,0 +1,39 @@
+- name: Create /srv/http/blog.ilvokhin.com directory
+  ansible.builtin.file:
+    path: /srv/http/blog.ilvokhin.com
+    state: directory
+    owner: http
+    group: http
+    mode: u+rw,g+rw,o+r
+
+- name: Request SSL certificate for blog.ilvokhin.com
+  ansible.builtin.include_role:
+    name: certificate
+  vars:
+    domains:
+      - blog.ilvokhin.com
+      - www.blog.ilvokhin.com
+
+- ansible.builtin.include_role:
+    name: nginx
+
+- name: Configure nginx for blog.ilvokhin.com
+  ansible.builtin.copy:
+    src: files/blog.ilvokhin.com
+    dest: /etc/nginx/sites-available
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload nginx
+
+- name: Enable blog.ilvokhin.com site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/blog.ilvokhin.com
+    dest: /etc/nginx/sites-enabled/blog.ilvokhin.com
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+    state: link
+  notify:
+    - Reload nginx
