@@ -28,5 +28,6 @@ server {
 
     listen 80;
     listen [::]:80;
+
     return 404;
 }

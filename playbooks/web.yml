@@ -2,5 +2,6 @@
   hosts: web
   roles:
     # Websites
+    # - { role: home }
     # - { role: ip }
     # - { role: blog }
