@@ -23,7 +23,7 @@
 
 - name: Update authorized_keys for Dmitry Ilvokhin
   ansible.builtin.copy:
-    src: files/id_rsa.pub
+    src: files/authorized_keys
     dest: /home/d/.ssh/authorized_keys
     owner: d
     group: d
