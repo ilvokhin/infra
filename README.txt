@@ -10,7 +10,13 @@ $ pip3 install -r requirements.txt
 
 RUN
 
-$ ansible-playbook playbooks/essential.yml
+$ ansible-playbook essential.yml
+$ ansible-playbook web.yml
+
+
+ROTATE VAULT PASSWORD
+
+$ bin/rotate-vault-password.sh
 
 
 REFERENCES

@@ -1,0 +1,15 @@
+#! /usr/bin/env sh
+
+head -c 128 /dev/urandom | base64 > password.txt
+
+ansible-vault rekey
+    --new-vault-password-file password.txt \
+    `git grep -l 'ANSIBLE_VAULT;1.1;AES256$'`
+
+gpg \
+  -r d@ilvokhin.com \
+  --armor \
+  --output misc/vault-password.asc \
+  --encrypt password.txt
+
+ansible-vault view misc/vaults/example.yml && rm password.txt
