@@ -10,7 +10,7 @@
     enabled: yes
     state: started
 
-- name: Setup sites directories to serve by nginx
+- name: Setup nginx directories 
   ansible.builtin.file:
     path: '{{ item }}'
     state: directory
@@ -18,6 +18,8 @@
     group: root
     mode: u+rw,g+r,o+r
   loop:
+    - /etc/nginx/auth
+    - /etc/nginx/includes
     - /etc/nginx/sites-available
     - /etc/nginx/sites-enabled
 

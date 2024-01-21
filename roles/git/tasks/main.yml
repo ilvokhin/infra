@@ -1,0 +1,137 @@
+- name: Install git
+  ansible.builtin.package:
+    name:
+      - git
+    state: present
+
+- name: Create git user
+  ansible.builtin.user:
+    name: git
+    shell: /usr/bin/git-shell
+    home: /srv/git
+
+- name: Update authorized_keys for Git
+  ansible.posix.authorized_key:
+    user: git
+    state: present
+    # Workaround to make it work `with_fileglob`.
+    # https://github.com/ansible/ansible/issues/48819#issuecomment-623851751
+    key: "{{ lookup('file', item) }}"
+    key_options: no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
+  with_fileglob:
+    - misc/pubkeys/*.pub
+
+- name: Setup SSH directory for Git
+  ansible.builtin.file:
+    path: /srv/git/.ssh
+    state: directory
+    owner: git
+    group: git
+    mode: u+rw,g-w,o-rwx
+
+# Private key is required to mirror repositories to GitHub.
+- name: Copy private key for Git
+  ansible.builtin.copy:
+    src: files/id_rsa
+    dest: /srv/git/.ssh/id_rsa
+    owner: git
+    group: git
+    mode: u+rw,g-rwx,o-rwx
+
+- name: Setup git-shell-commands directory
+  ansible.builtin.file:
+    path: /srv/git/git-shell-commands
+    state: directory
+    owner: git
+    group: git
+    mode: u+rwx,g-w,o-rwx
+
+- name: Copy no-interactive-login command
+  ansible.builtin.copy:
+    src: files/no-interactive-login
+    dest: /srv/git/git-shell-commands
+    owner: git
+    group: git
+    mode: u+rwx,g+rwx,o-rwx
+
+- name: Enable git-daemon
+  ansible.builtin.service:
+    name: git-daemon.socket
+    enabled: yes
+    state: started
+
+- name: Install fcgiwrap
+  ansible.builtin.package:
+    name:
+      - fcgiwrap
+    state: present
+
+- name: Enable fcgiwrap.socket
+  ansible.builtin.service:
+    name: fcgiwrap.socket
+    enabled: yes
+    state: started
+
+- name: Request SSL certificate for git.ilvokhin.com
+ ansible.builtin.include_role:
+   name: certificate
+ vars:
+   domains:
+     - git.ilvokhin.com
+
+- ansible.builtin.include_role:
+    name: nginx
+
+- name: Setup auth directory for git
+  ansible.builtin.file:
+    path: /etc/nginx/auth/git
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+# Alternative approach is to use community.general.htpasswd module to manage
+# .htpasswd file. Unfortunetly, there are couple of drawbacks:
+# * Target systems should have passlib Python library installed.
+# * Passwords might leak in the Ansible debug output, or even non-debug
+#   without no_log.
+# Seems like managing good old file is more convenient at the moment.
+
+- name: Copy git .htpasswd file to manage HTTP passwords
+  ansible.builtin.copy:
+    src: files/.htpasswd
+    dest: /etc/nginx/auth/git/.htpasswd
+    owner: root
+    group: root
+    mode: u+rw,g+rw,o+r
+
+- name: Copy git.conf to handle git HTTP requests
+  ansible.builtin.copy:
+    src: files/git.conf
+    dest: /etc/nginx/includes
+    owner: root
+    group: root
+    mode: u+rw,g+rw,o+r
+  notify:
+    - Reload nginx
+
+- name: Configure nginx for git.ilvokhin.com
+  ansible.builtin.copy:
+    src: files/git.ilvokhin.com
+    dest: /etc/nginx/sites-available
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload nginx
+
+- name: Enable git.ilvokhin.com site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/git.ilvokhin.com
+    dest: /etc/nginx/sites-enabled/git.ilvokhin.com
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+    state: link
+  notify:
+    - Reload nginx
