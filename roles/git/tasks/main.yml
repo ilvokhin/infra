@@ -135,6 +135,3 @@
     state: link
   notify:
     - Reload nginx
-
-# TODO:
-# 1. Make role for repository creation.
