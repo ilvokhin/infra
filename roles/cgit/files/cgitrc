@@ -1,0 +1,41 @@
+# See cgitrc(5) for details and example config.
+
+# Enable caching of up to 1000 output entries.
+cache-size=1000
+
+# Show owner on index page.
+enable-index-owner=0
+
+# Enable blame page and create links to it from tree page.
+enable-blame=1
+
+# Add a cgit favicon.
+favicon=
+
+# Use a custom logo.
+logo=
+
+# Set the title and heading of the repository index page.
+root-title=git.ilvokhin.com
+
+# Set a subheading for the repository index page.
+root-desc=
+
+# Allow download of tar.gz, tar.bz2 and zip-files.
+snapshots=tar.gz tar.bz2 zip
+
+## List of common mimetypes.
+
+mimetype.gif=image/gif
+mimetype.html=text/html
+mimetype.jpg=image/jpeg
+mimetype.jpeg=image/jpeg
+mimetype.pdf=application/pdf
+mimetype.png=image/png
+mimetype.svg=image/svg+xml
+
+# Automatically search for the repositories.
+scan-path=/srv/git/
+
+# To fix messed up urls.
+virtual-root=/
