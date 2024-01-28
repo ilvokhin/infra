@@ -1,0 +1,29 @@
+- name: Install cgit
+  ansible.builtin.package:
+    name:
+      - cgit
+    state: present
+
+- ansible.builtin.include_role:
+   name: nginx
+
+- ansible.builtin.include_role:
+   name: git
+
+- name: Configure cgit for git.ilvokhin.com
+  ansible.builtin.copy:
+    src: files/cgitrc
+    dest: /etc/cgitrc
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+- name: Copy nginx for cgit
+  ansible.builtin.copy:
+    src: files/cgit.conf
+    dest: /etc/nginx/includes/cgit.conf
+    owner: root
+    group: root
+    mode: u+rw,g+rw,o+r
+  notify:
+    - Reload nginx
