@@ -4,4 +4,8 @@
       - vim
       - screen
       - git
+      - man-db
+      - strace
+      - which
+      - gnu-netcat
     state: present
