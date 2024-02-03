@@ -2,6 +2,7 @@
   hosts: all
   roles:
     - { role: minimal }
+    - { role: sshd }
     - { role: users }
     - { role: sudo }
     - { role: atop }

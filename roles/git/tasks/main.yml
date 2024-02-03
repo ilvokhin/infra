@@ -135,3 +135,11 @@
     state: link
   notify:
     - Reload nginx
+
+- name: Copy managing scripts
+  ansible.builtin.copy:
+    src: files/init-git-repo.sh
+    dest: /srv/git/init-git-repo.sh
+    owner: git
+    group: git
+    mode: u+rwx,g-rwx,o-rwx
