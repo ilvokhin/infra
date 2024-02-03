@@ -23,6 +23,14 @@
     - /etc/nginx/sites-available
     - /etc/nginx/sites-enabled
 
+- name: Setup nginx serving directory
+  ansible.builtin.file:
+    path: /srv/http
+    state: directory
+    owner: http
+    group: http
+    mode: u+rw,g+rw,o+r
+
 - name: Configure nginx
   ansible.builtin.copy:
     src: files/nginx.conf
