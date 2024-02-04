@@ -2,8 +2,9 @@
   hosts: web
   roles:
     # Websites
-    # - { role: home }
-    # - { role: ip }
-    # - { role: blog }
-    # - { role: git }
-    # - { role: cgit }
+    - { role: home }
+    - { role: ip }
+    - { role: blog }
+    # Git
+    - { role: git }
+    - { role: cgit }
