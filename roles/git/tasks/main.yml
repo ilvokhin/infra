@@ -82,7 +82,7 @@
       - git.ilvokhin.com
 
 - ansible.builtin.include_role:
-  name: nginx
+    name: nginx
 
 - name: Setup auth directory for git
   ansible.builtin.file:
@@ -145,3 +145,5 @@
     owner: git
     group: git
     mode: u+rwx,g-rwx,o-rwx
+
+# TODO: figure out proper permissions to fix HTTP protocol push.
