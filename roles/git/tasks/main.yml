@@ -82,7 +82,7 @@
       - git.ilvokhin.com
 
 - ansible.builtin.include_role:
-    name: nginx
+  name: nginx
 
 - name: Setup auth directory for git
   ansible.builtin.file:
