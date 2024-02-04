@@ -3,6 +3,8 @@
   roles:
     - { role: minimal }
     - { role: sshd }
-    - { role: users }
     - { role: sudo }
     - { role: atop }
+    # Users should come last in case other roles install packages with system
+    # user and/or groups creation to achieve proper reentrancy.
+    - { role: users }

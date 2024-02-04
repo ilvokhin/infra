@@ -11,6 +11,8 @@
     home: /home/d
     groups:
       - wheel
+      # Group http required to deploy websites with rsync under personal
+      # username.
       - http
 
 - name: Setup SSH directory for Dmitry Ilvokhin
