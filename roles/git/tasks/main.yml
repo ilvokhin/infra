@@ -60,24 +60,15 @@
     enabled: yes
     state: started
 
-- name: Install fcgiwrap
-  ansible.builtin.package:
-    name:
-      - fcgiwrap
-    state: present
-
-- name: Enable fcgiwrap.socket
-  ansible.builtin.service:
-    name: fcgiwrap.socket
-    enabled: yes
-    state: started
+- ansible.builtin.include_role:
+    name: fcgiwrap
 
 - name: Request SSL certificate for git.ilvokhin.com
- ansible.builtin.include_role:
-   name: certificate
- vars:
-   domains:
-     - git.ilvokhin.com
+  ansible.builtin.include_role:
+    name: certificate
+  vars:
+    domains:
+      - git.ilvokhin.com
 
 - ansible.builtin.include_role:
     name: nginx

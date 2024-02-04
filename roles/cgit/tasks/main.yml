@@ -5,6 +5,9 @@
     state: present
 
 - ansible.builtin.include_role:
+    name: fcgiwrap
+
+- ansible.builtin.include_role:
    name: nginx
 
 - ansible.builtin.include_role:

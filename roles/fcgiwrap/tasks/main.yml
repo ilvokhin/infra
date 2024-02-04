@@ -1,0 +1,11 @@
+- name: Install fcgiwrap
+  ansible.builtin.package:
+    name:
+      - fcgiwrap
+    state: present
+
+- name: Enable fcgiwrap.socket
+  ansible.builtin.service:
+    name: fcgiwrap.socket
+    enabled: yes
+    state: started
