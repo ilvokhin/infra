@@ -37,3 +37,6 @@
     state: link
   notify:
     - Reload nginx
+
+- ansible.builtin.include_role:
+    name: rsync
