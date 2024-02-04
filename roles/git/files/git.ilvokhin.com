@@ -7,7 +7,7 @@ server {
     # Asterisk (*) is here to match both git.conf and cgit.conf (if the latter
     # exists), because cgit comes with a separate role, but they share one
     # server (git.ilvokhin.com) for usage convenience.
-    include includes/*git.conf
+    include includes/*git.conf;
 
     listen 443 ssl;
     ssl_certificate /etc/letsencrypt/live/git.ilvokhin.com/fullchain.pem;
