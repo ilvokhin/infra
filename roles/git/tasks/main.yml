@@ -10,6 +10,14 @@
     shell: /usr/bin/git-shell
     home: /srv/git
 
+- name: Setup SSH directory for Git
+  ansible.builtin.file:
+    path: /srv/git/.ssh
+    state: directory
+    owner: git
+    group: git
+    mode: u+rw,g-w,o-rwx
+
 - name: Update authorized_keys for Git
   ansible.posix.authorized_key:
     user: git
@@ -21,19 +29,22 @@
   with_fileglob:
     - misc/pubkeys/*.pub
 
-- name: Setup SSH directory for Git
-  ansible.builtin.file:
-    path: /srv/git/.ssh
-    state: directory
-    owner: git
-    group: git
-    mode: u+rw,g-w,o-rwx
-
 # Private key is required to mirror repositories to GitHub.
 - name: Copy private key for Git
   ansible.builtin.copy:
     src: files/id_rsa
     dest: /srv/git/.ssh/id_rsa
+    owner: git
+    group: git
+    mode: u+rw,g-rwx,o-rwx
+
+# We need to know github.com ssh keys before pushing there, otherwise
+# post-receive will fail asking to verify authenticity of host.
+# Run `ssh-keyscan github.com` to re-generate keys if required.
+- name: Copy known_hosts for Git
+  ansible.builtin.copy:
+    src: files/known_hosts
+    dest: /srv/git/.ssh/known_hosts
     owner: git
     group: git
     mode: u+rw,g-rwx,o-rwx
@@ -44,7 +55,7 @@
     state: directory
     owner: git
     group: git
-    mode: u+rwx,g-w,o-rwx
+    mode: u+rwx,g+r,o+rx
 
 - name: Copy no-interactive-login command
   ansible.builtin.copy:
@@ -52,7 +63,7 @@
     dest: /srv/git/git-shell-commands
     owner: git
     group: git
-    mode: u+rwx,g+rwx,o-rwx
+    mode: u+rwx,g+r,o+r
 
 - name: Enable git-daemon
   ansible.builtin.service:
