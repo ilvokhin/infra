@@ -1,0 +1,8 @@
+dependencies:
+  - role: certificate
+    vars:
+      domains:
+        - ilvokhin.com
+        - www.ilvokhin.com
+  - role: nginx
+  - role: rsync

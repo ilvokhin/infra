@@ -6,17 +6,6 @@
     group: http
     mode: u+rw,g+rw,o+r
 
-- name: Request SSL certificate for ilvokhin.com
-  ansible.builtin.include_role:
-    name: certificate
-  vars:
-    domains:
-      - ilvokhin.com
-      - www.ilvokhin.com
-
-- ansible.builtin.include_role:
-    name: nginx
-
 - name: Configure nginx for ilvokhin.com
   ansible.builtin.copy:
     src: files/ilvokhin.com
@@ -37,6 +26,3 @@
     state: link
   notify:
     - Reload nginx
-
-- ansible.builtin.include_role:
-    name: rsync
