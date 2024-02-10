@@ -41,9 +41,6 @@
   notify:
     - Reload nginx
 
-- ansible.builtin.include_role:
-    name: logrotate
-
 - name: Configure nginx logrotate
   ansible.builtin.copy:
     src: files/nginx.logrotate
