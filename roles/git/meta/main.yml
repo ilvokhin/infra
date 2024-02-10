@@ -1,0 +1,7 @@
+dependencies:
+  - role: certificate
+    vars:
+      domains:
+        - git.ilvokhin.com
+  - role: nginx
+  - role: fcgiwrap

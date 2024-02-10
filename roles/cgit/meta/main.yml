@@ -1,4 +1,4 @@
 dependencies:
-  - role: fcgiwrap
   - role: nginx
+  - role: fcgiwrap
   - role: git

@@ -71,19 +71,6 @@
     enabled: yes
     state: started
 
-- ansible.builtin.include_role:
-    name: fcgiwrap
-
-- name: Request SSL certificate for git.ilvokhin.com
-  ansible.builtin.include_role:
-    name: certificate
-  vars:
-    domains:
-      - git.ilvokhin.com
-
-- ansible.builtin.include_role:
-    name: nginx
-
 - name: Setup auth directory for git
   ansible.builtin.file:
     path: /etc/nginx/auth/git
