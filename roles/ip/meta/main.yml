@@ -1,0 +1,7 @@
+dependencies:
+  - role: certificate
+    vars:
+      domains:
+        - ip.ilvokhin.com
+        - www.ip.ilvokhin.com
+  - role: nginx
