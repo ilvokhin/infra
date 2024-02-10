@@ -1,6 +1,3 @@
-- ansible.builtin.include_role:
-    name: certbot
-
 - name: Request SSL certificate from Let's Encrypt
   shell: |
     # Make task independent: if nginx is already running, stop it and then
