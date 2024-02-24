@@ -14,6 +14,15 @@ $ ansible-playbook essential.yml
 $ ansible-playbook web.yml
 
 
+DOTFILES
+
+There are currently no secrets stored in dotfiles, therefore it is possible to
+install dotfiles to localhost without decrypting Ansible Vault.
+
+$ touch /tmp/ansible.cfg
+$ ANSIBLE_CONFIG=/tmp/ansible.cfg ansible-playbook dotfiles.yml
+
+
 ROTATE VAULT PASSWORD
 
 $ bin/rotate-vault-password.sh
