@@ -1,0 +1,25 @@
+" Enable ruler (will display line number and column number by default).
+set ruler
+
+" Enable syntax highlight.
+syntax on
+
+" Expand tabs to spaces.
+set expandtab
+
+" Use four-space indentation.
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+" Limit text width.
+set textwidth=79
+
+" Disable incremental search.
+set noincsearch
+
+" Disable highlighting of the search results.
+set nohlsearch
+
+" Disable incremental search.
+set noincsearch

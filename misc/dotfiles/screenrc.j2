@@ -1,0 +1,49 @@
+# Automatically detach screen on hangup.
+autodetach on
+
+# Change escape key to Ctrl + b.
+escape ^bb
+
+# Increase size of the scrollback buffer.
+defscrollback 32768
+
+# Disable copyright notice during startup.
+startup_message off
+
+# Set `$TERM` value for xterm instead of screen.
+term xterm
+
+# Enable "alternate screen" terminal capability. Screen will behave like
+# regular terminal. For example, after vim was closed, shell history will be
+# displayed instead of contents of the file just closed.
+altscreen on
+
+# Always display windows captions with the following format.
+# %{Wb}: bright white letters on blue background.
+# %H: hostname of the system.
+# %c: current time HH:MM in 24h format.
+# %{wk}: white letter on black background.
+# %-w: all window numbers and names up to the current window.
+# %{kw}: black letters on white background.
+# [%n %t]: window number and window title.
+# %{-}: restores the attributes and colors that were set before the last change
+# was made.
+# %+w: all window numbers and names starting with the window after the current
+# one.
+caption always "%{Wb} %H - %c %{wk} %-w%{kw}[%n %t]%{-}%+w"
+
+# Enable visual bell.
+vbell off
+
+# Use bright colors for bold text (most terminal emulators do this already).
+attrcolor b ".I"
+
+# Change background-color-erase setting. If ‘bce’ is set to on, all characters
+# cleared by an erase/insert/scroll/clear operation will be displayed in the
+# current background color.
+defbce "on"
+
+{% if jumphost %}
+# Make ssh-agent forwarding work with screen.
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+{% endif %}

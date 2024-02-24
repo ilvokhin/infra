@@ -1,0 +1,25 @@
+# imap
+set imap_user = d@ilvokhin.com
+set folder = imaps://mail.ilvokhin.com
+set spoolfile = +INBOX
+set record = +INBOX/Sent
+set postponed = +INBOX/Drafts
+set mbox = +INBOX/All
+
+# smtp
+set smtp_url = smtps://$imap_user@mail.ilvokhin.com
+set smtp_pass = $imap_pass
+set ssl_force_tls = yes
+
+# composition
+set editor = `echo \$EDITOR`
+set edit_headers = yes
+set charset = UTF-8
+unset use_domain
+set realname = "Dmitry Ilvokhin"
+set from = "d@ilvokhin.com"
+set use_from = yes
+
+set sort=threads
+set sort_browser=date
+set sort_aux=reverse-last-date-received

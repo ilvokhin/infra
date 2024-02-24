@@ -1,0 +1,163 @@
+# This role is a little bit different from others, because it is supposed to
+# run mostly from localhost to make and copy dotfiles that might be useful on
+# this particular machine. There is maybe not enough permissions to install
+# software, so we are taking unusual approach here: check if software is
+# installed and then bring relevant dotfiles for it.
+
+- name: Configure bash if installed
+  block:
+    - name: Check if bash is installed
+      ansible.builtin.command: bash --version
+      changed_when: false
+      failed_when: false
+      register: has_bash
+
+    - name: Copy bash_profile to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/bash_profile
+        dest: "~{{ user }}/.bash_profile"
+      when: has_bash.rc == 0
+
+    - name: Template bashrc to home directory
+      ansible.builtin.template:
+        src: misc/dotfiles/bashrc.j2
+        dest: "~{{ user }}/.bashrc"
+      when: has_bash.rc == 0
+
+- name: Configure vim if installed
+  block:
+    - name: Check if vim is installed
+      ansible.builtin.command: vim --version
+      changed_when: false
+      failed_when: false
+      register: has_vim
+
+    - name: Copy vimrc to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/vimrc
+        dest: "~{{ user }}/.vimrc"
+      when: has_vim.rc == 0
+
+- name: Configure screen if installed
+  block:
+    - name: Check if screen is installed
+      ansible.builtin.command: screen --version
+      changed_when: false
+      failed_when: false
+      register: has_screen
+
+    - name: Template screenrc to home directory
+      ansible.builtin.template:
+        src: misc/dotfiles/screenrc.j2
+        dest: "~{{ user }}/.screenrc"
+      # For some reason screen's exit status is 1 for --version.
+      when: has_screen.rc == 1
+
+- name: Configure ssh if installed
+  block:
+    - name: Check if ssh is installed
+      ansible.builtin.command: ssh -V
+      changed_when: false
+      failed_when: false
+      register: has_ssh
+
+    - name: Setup ssh directory
+      ansible.builtin.file:
+        path: "~{{ user }}/.ssh"
+        state: directory
+        owner: "{{ user }}"
+        mode: u+rw,g-rw,o-rw
+      when: has_ssh.rc == 0
+
+    - name: Template ssh config to home directory
+      ansible.builtin.template:
+        src: misc/dotfiles/ssh/config.j2
+        dest: "~{{ user }}/.ssh/config"
+        owner: "{{ user }}"
+        mode: u+rw,g-rw,o-rw
+      when: has_ssh.rc == 0
+
+    - name: Copy ssh rc to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/ssh/rc
+        dest: "~{{ user }}/.ssh/rc"
+        owner: "{{ user }}"
+        mode: u+rwx,g-rw,o-rw
+      when:
+        - has_ssh.rc == 0
+        - jumphost
+
+- name: Configure git if installed
+  block:
+    - name: Check if git is installed
+      ansible.builtin.command: git --version
+      changed_when: false
+      failed_when: false
+      register: has_git
+
+    - name: Copy gitconfig to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/gitconfig
+        dest: "~{{ user }}/.gitconfig"
+      when: has_git.rc == 0
+
+- name: Configure gdb if installed
+  block:
+    - name: Check if gdb is installed
+      ansible.builtin.command: gdb --version
+      changed_when: false
+      failed_when: false
+      register: has_gdb
+
+    - name: Copy gdbinit to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/gdbinit
+        dest: "~{{ user }}/.gdbinit"
+      when: has_gdb.rc == 0
+
+- name: Configure mutt if installed
+  block:
+    - name: Check if mutt is installed
+      ansible.builtin.command: mutt -v
+      changed_when: false
+      failed_when: false
+      register: has_mutt
+
+    - name: Copy muttrc to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/muttrc
+        dest: "~{{ user }}/.muttrc"
+      when: has_mutt.rc == 0
+
+- name: Copy templates files if necessary
+  block:
+    - name: Check if C++ compiler is installed
+      ansible.builtin.command: c++ --version
+      changed_when: false
+      failed_when: false
+      register: has_cpp
+
+    - name: Check if Python is installed
+      ansible.builtin.command: python --version
+      changed_when: false
+      failed_when: false
+      register: has_python
+
+    - name: Setup templates directory
+      ansible.builtin.file:
+        path: "~{{ user }}/.templates"
+        state: directory
+        owner: "{{ user }}"
+      when: has_cpp.rc == 0 or has_python.rc == 0
+
+    - name: Copy template.cpp to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/templates/template.cpp
+        dest: "~{{ user }}/.templates/template.cpp"
+      when: has_cpp.rc == 0
+
+    - name: Copy template.py to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/templates/template.py
+        dest: "~{{ user }}/.templates/template.py"
+      when: has_python.rc == 0

@@ -1,0 +1,29 @@
+Host *
+    User d
+{% if ansible_facts['os_family'] == "Darwin" %}
+    # macOS specific settings.
+    UseKeychain yes
+    AddKeysToAgent yes
+{% endif %}
+
+Host gate
+    Hostname gate.ilvokhin.com
+    ForwardAgent yes
+
+Host sun
+    Hostname sun.ilvokhin.com
+
+Host mail
+    Hostname mail.ilvokhin.com
+    User root
+
+# Moscow machines behind NAT.
+Host water
+    ProxyJump gate
+    Hostname 10.9.8.2
+    ForwardAgent yes
+
+Host flame
+    ProxyJump gate
+    Hostname 10.9.9.2
+    ForwardAgent yes

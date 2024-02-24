@@ -1,0 +1,22 @@
+# Source system-wide settings of there are any.
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+{% if ansible_facts['os_family'] == "Darwin" %}
+# Specific settings for macOS.
+if [[ "$OSTYPE" == "darwin"* ]]; then
+
+# Silence bash deprecation warning.
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Enable colors for `ls` output.
+export CLICOLOR=1
+
+# Get GitHub token from keychain to avoid homebrew rate limiting on GitHub
+# side.
+export HOMEBREW_GITHUB_API_TOKEN=`security \
+    find-generic-password -s "Homebrew GitHub Token" -w`
+
+fi
+{% endif %}
