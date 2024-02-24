@@ -45,7 +45,14 @@ Stretch goal is to re-setup water and flame as well, but this is not urgent and
 a bit tricky to do remotely.
 
 
+DOTFILES
+
+Main idea is to manage dotfiles everywhere with ansible.
+
+
 REFERENCES
 
 [1]: https://gitlab.archlinux.org/archlinux/infrastructure/-/tree/master
 [2]: https://github.com/cdown/ansible-desktop
+[3]: https://github.com/rudenkornk/dotfiles
+[4]: https://stackoverflow.com/a/48892377/1313516
