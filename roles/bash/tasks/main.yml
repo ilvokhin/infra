@@ -1,0 +1,21 @@
+- name: Install bash
+  ansible.builtin.package:
+    name:
+      - bash
+    state: present
+
+- name: Configure bash for Dmitry Ilvokhin
+  ansible.builtin.template:
+    src: misc/dotfiles/bashrc.j2
+    dest: /home/d/.bashrc
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r
+
+- name: Add bash_profile for Dmitry Ilvokhin
+  ansible.builtin.copy:
+    src: misc/dotfiles/bash_profile
+    dest: /home/d/.bash_profile
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r

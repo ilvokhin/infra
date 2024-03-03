@@ -6,5 +6,6 @@
     - { role: sshd }
     - { role: sudo }
     - { role: atop }
+    - { role: bash }
     - { role: vim }
     - { role: screen }
