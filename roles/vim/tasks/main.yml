@@ -1,0 +1,13 @@
+- name: Install vim
+  ansible.builtin.package:
+    name:
+      - vim
+    state: present
+
+- name: Configure vim for Dmitry Ilvokhin
+  ansible.builtin.copy:
+    src: misc/dotfiles/vimrc
+    dest: /home/d/.vimrc
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r

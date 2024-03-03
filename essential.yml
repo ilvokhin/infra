@@ -1,10 +1,9 @@
 - name: Essential setup for all hosts
   hosts: all
   roles:
+    - { role: users }
     - { role: minimal }
     - { role: sshd }
     - { role: sudo }
     - { role: atop }
-    # Users should come last in case other roles install packages with system
-    # user and/or groups creation to achieve proper reentrancy.
-    - { role: users }
+    - { role: vim }
