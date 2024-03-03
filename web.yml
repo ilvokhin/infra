@@ -6,5 +6,5 @@
     - { role: ip }
     - { role: blog }
     # Git
-    - { role: git }
+    - { role: gitserver }
     - { role: cgit }
