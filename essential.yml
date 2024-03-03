@@ -7,3 +7,4 @@
     - { role: sudo }
     - { role: atop }
     - { role: vim }
+    - { role: screen }

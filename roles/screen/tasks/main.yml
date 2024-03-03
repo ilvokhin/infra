@@ -1,0 +1,13 @@
+- name: Install screen
+  ansible.builtin.package:
+    name:
+      - screen
+    state: present
+
+- name: Configure screen for Dmitry Ilvokhin
+  ansible.builtin.template:
+    src: misc/dotfiles/screenrc.j2
+    dest: /home/d/.screenrc
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r
