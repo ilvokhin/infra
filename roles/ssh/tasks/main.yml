@@ -1,0 +1,33 @@
+- name: Setup SSH directory for Dmitry Ilvokhin
+  ansible.builtin.file:
+    path: /home/d/.ssh
+    state: directory
+    owner: d
+    group: d
+    mode: u+rw,g-wx,o-rwx
+
+- name: Update authorized_keys for Dmitry Ilvokhin
+  ansible.posix.authorized_key:
+    user: d
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - misc/pubkeys/d.pub
+
+- name: Configure ssh for Dmitry Ilvokhin
+  ansible.builtin.template:
+    src: misc/dotfiles/ssh/config.j2
+    dest: "~{{ user }}/.ssh/config"
+    owner: "{{ user }}"
+    mode: u+rw,g-rw,o-rw
+  when:
+    - jumphost
+
+- name: Add ssh rc for Dmitry Ilvokhin
+  ansible.builtin.copy:
+    src: misc/dotfiles/ssh/rc
+    dest: "~{{ user }}/.ssh/rc"
+    owner: "{{ user }}"
+    mode: u+rwx,g-rw,o-rw
+  when:
+    - jumphost

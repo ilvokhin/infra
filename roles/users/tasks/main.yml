@@ -14,19 +14,3 @@
       # Group http required to deploy websites with rsync under personal
       # username.
       - http
-
-- name: Setup SSH directory for Dmitry Ilvokhin
-  ansible.builtin.file:
-    path: /home/d/.ssh
-    state: directory
-    owner: d
-    group: d
-    mode: u+rw,g-wx,o-rwx
-
-- name: Update authorized_keys for Dmitry Ilvokhin
-  ansible.posix.authorized_key:
-    user: d
-    state: present
-    key: '{{ item }}'
-  with_file:
-    - misc/pubkeys/d.pub
