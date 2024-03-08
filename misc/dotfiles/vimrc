@@ -7,10 +7,18 @@ syntax on
 " Expand tabs to spaces.
 set expandtab
 
-" Use four-space indentation.
+" Use four-space indentation by default.
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+" In Makefiles, don't expand tabs to spaces, since we need the actual tabs.
+autocmd FileType make setlocal noexpandtab
+
+" Use two-space indentation for yaml files.
+autocmd FileType yaml setlocal tabstop=2
+autocmd FileType yaml setlocal softtabstop=2
+autocmd FileType yaml setlocal shiftwidth=2
 
 " Limit text width.
 set textwidth=79
