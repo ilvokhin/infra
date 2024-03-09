@@ -1,0 +1,13 @@
+- name: Install mutt
+  ansible.builtin.package:
+    name:
+      - mutt
+    state: present
+
+- name: Configure mutt for Dmitry Ilvokhin
+  ansible.builtin.copy:
+    src: misc/dotfiles/muttrc
+    dest: /home/d/.muttrc
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r
