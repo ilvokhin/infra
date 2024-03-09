@@ -1,0 +1,13 @@
+- name: Install gdb
+  ansible.builtin.package:
+    name:
+      - gdb
+    state: present
+
+- name: Configure gdb for Dmitry Ilvokhin
+  ansible.builtin.copy:
+    src: misc/dotfiles/gdbinit
+    dest: /home/d/.gdbinit
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r
