@@ -1,0 +1,13 @@
+- name: Install git
+  ansible.builtin.package:
+    name:
+      - git
+    state: present
+
+- name: Configure git for Dmitry Ilvokhin
+  ansible.builtin.copy:
+    src: misc/dotfiles/gitconfig
+    dest: /home/d/.gitconfig
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r
