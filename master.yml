@@ -1,0 +1,2 @@
+- ansible.builtin.import_playbook: essential.yml
+- ansible.builtin.import_playbook: web.yml
