@@ -11,3 +11,5 @@
     owner: d
     group: d
     mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles

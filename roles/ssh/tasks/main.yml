@@ -5,6 +5,8 @@
     owner: d
     group: d
     mode: u+rw,g-wx,o-rwx
+  tags:
+    - dotfiles
 
 - name: Update authorized_keys for Dmitry Ilvokhin
   ansible.posix.authorized_key:
@@ -13,6 +15,8 @@
     key: '{{ item }}'
   with_file:
     - misc/pubkeys/d.pub
+  tags:
+    - dotfiles
 
 - name: Configure ssh for Dmitry Ilvokhin
   ansible.builtin.template:
@@ -22,6 +26,8 @@
     mode: u+rw,g-rw,o-rw
   when:
     - jumphost
+  tags:
+    - dotfiles
 
 - name: Add ssh rc for Dmitry Ilvokhin
   ansible.builtin.copy:
@@ -31,3 +37,5 @@
     mode: u+rwx,g-rw,o-rw
   when:
     - jumphost
+  tags:
+    - dotfiles

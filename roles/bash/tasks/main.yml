@@ -11,6 +11,8 @@
     owner: d
     group: d
     mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles
 
 - name: Add bash_profile for Dmitry Ilvokhin
   ansible.builtin.copy:
@@ -19,3 +21,5 @@
     owner: d
     group: d
     mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles
