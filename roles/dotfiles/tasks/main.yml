@@ -5,6 +5,7 @@
 # installed and then bring relevant dotfiles for it.
 
 - name: Configure bash if installed
+  tags: bash
   block:
     - name: Check if bash is installed
       ansible.builtin.command: bash --version
@@ -25,6 +26,7 @@
       when: has_bash.rc == 0
 
 - name: Configure vim if installed
+  tags: vim
   block:
     - name: Check if vim is installed
       ansible.builtin.command: vim --version
@@ -39,6 +41,7 @@
       when: has_vim.rc == 0
 
 - name: Configure screen if installed
+  tags: screen
   block:
     - name: Check if screen is installed
       ansible.builtin.command: screen --version
@@ -54,6 +57,7 @@
       when: has_screen.rc == 1
 
 - name: Configure ssh if installed
+  tags: ssh
   block:
     - name: Check if ssh is installed
       ansible.builtin.command: ssh -V
@@ -88,6 +92,7 @@
         - jumphost
 
 - name: Configure git if installed
+  tags: git
   block:
     - name: Check if git is installed
       ansible.builtin.command: git --version
@@ -102,6 +107,7 @@
       when: has_git.rc == 0
 
 - name: Configure gdb if installed
+  tags: gdb
   block:
     - name: Check if gdb is installed
       ansible.builtin.command: gdb --version
@@ -116,6 +122,7 @@
       when: has_gdb.rc == 0
 
 - name: Configure mutt if installed
+  tags: mutt
   block:
     - name: Check if mutt is installed
       ansible.builtin.command: mutt -v
@@ -130,6 +137,7 @@
       when: has_mutt.rc == 0
 
 - name: Copy templates files if necessary
+  tags: templates
   block:
     - name: Check if C++ compiler is installed
       ansible.builtin.command: c++ --version
