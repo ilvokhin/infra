@@ -1,7 +1,6 @@
 - name: Install minimal tools
   ansible.builtin.package:
     name:
-      - git
       - man-db
       - strace
       - which
