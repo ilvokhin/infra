@@ -4,12 +4,6 @@
       - nginx
     state: present
 
-- name: Enable nginx systemd service
-  ansible.builtin.service:
-    name: nginx
-    enabled: yes
-    state: started
-
 - name: Setup nginx directories 
   ansible.builtin.file:
     path: '{{ item }}'
@@ -48,3 +42,9 @@
     owner: root
     group: root
     mode: u+rw,g+r,o+r
+
+- name: Enable nginx systemd service
+  ansible.builtin.service:
+    name: nginx
+    enabled: yes
+    state: started
