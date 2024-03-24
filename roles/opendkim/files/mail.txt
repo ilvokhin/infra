@@ -1,0 +1,2 @@
+mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; s=email; "
+	  "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDfLCoTGJhay1bw8B78F559UcPdUXxYjBR51Y3zQNYVG6wIOZv9dB+HpAPdkgbxIgBC74HzOMTO4nr6EyFkfQ4srXzJyd/Wpc4fxwT6GrFFGLZmn+8thkVXqvxnjrLqKrwMXq48rDuFinT8mXa8ljTSW9yaxBoTlTajpgFk6LXPUQIDAQAB" )  ; ----- DKIM key mail for ilvokhin.com

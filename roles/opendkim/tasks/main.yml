@@ -1,0 +1,28 @@
+- name: Install opendkim
+  ansible.builtin.package:
+    name:
+      - opendkim
+    state: present
+
+- name: Configure opendkim
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: /etc/opendkim/
+    owner: opendkim
+    group: opendkim
+    # It doesn't have much sense to set a more granular permissions for each
+    # specific file here, because /etc/opendkim directory itself has pretty
+    # strict permissions and non-privilege users can't read them anyway.
+    mode: u+rw,g-rwx,o-rwx
+  loop:
+    - files/opendkim.conf
+    - files/mail.private
+    - files/mail.txt
+  notify:
+    - Restart opendkim
+
+- name: Enable opendkim systemd service
+  ansible.builtin.service:
+    name: opendkim
+    enabled: yes
+    state: started
