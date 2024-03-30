@@ -7,6 +7,12 @@ fi
 # Specific settings for macOS.
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
+# Set `LC_CTYPE` compatible with Linux systems. macOS sets `LC_CTYPE` to
+# `UTF-8`, when Terminal has 'Set locale environment variables on startup'
+# checkbox ticked in settings. `UTF-8` doesn't seem like a valid value, so
+# override it to more sensible one.
+export LC_CTYPE=en_US.UTF-8
+
 # Silence bash deprecation warning.
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
