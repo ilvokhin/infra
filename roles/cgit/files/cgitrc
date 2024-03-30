@@ -9,9 +9,6 @@ enable-index-owner=0
 # Enable blame page and create links to it from tree page.
 enable-blame=1
 
-# Add a cgit favicon.
-favicon=
-
 # Use a custom logo.
 logo=
 

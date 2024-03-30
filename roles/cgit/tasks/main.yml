@@ -21,8 +21,3 @@
     mode: u+rw,g+rw,o+r
   notify:
     - Reload nginx
-
-- name: Remove cgit favicon.ico file
-  ansible.builtin.file:
-    path: /usr/share/webapps/cgit/favicon.ico
-    state: absent
