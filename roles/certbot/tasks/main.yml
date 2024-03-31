@@ -6,6 +6,19 @@
   loop:
     - certbot
 
+- name: Setup certbot directories
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  loop:
+    - /etc/letsencrypt/renewal-hooks
+    - /etc/letsencrypt/renewal-hooks/deploy
+    - /etc/letsencrypt/renewal-hooks/post
+    - /etc/letsencrypt/renewal-hooks/pre
+
 - name: Configure certbot systemd service
   ansible.builtin.copy:
     src: files/certbot.service
