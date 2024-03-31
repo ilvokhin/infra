@@ -48,3 +48,11 @@
     name: nginx
     enabled: yes
     state: started
+
+- name: Copy nginx certificate renewal hook
+  ansible.builtin.copy:
+    src: files/nginx.sh
+    dest: /etc/letsencrypt/renewal-hooks/deploy/nginx.sh
+    owner: root
+    group: root
+    mode: u+rwx,g+r,o+r
