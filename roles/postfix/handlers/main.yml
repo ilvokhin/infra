@@ -1,0 +1,12 @@
+- name: Reload postfix
+  ansible.builtin.service:
+    name: postfix
+    state: reloaded
+
+- name: Check postfix
+  ansible.builtin.command: postfix check
+
+- name: Update postfix lookup tables
+  ansible.builtin.command: postmap {{ item }}
+  with_items:
+    - /etc/postfix/virtual

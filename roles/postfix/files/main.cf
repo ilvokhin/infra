@@ -1,0 +1,337 @@
+# COMPATIBILITY
+#
+# The compatibility_level determines what default settings Postfix
+# will use for main.cf and master.cf settings. These defaults will
+# change over time.
+#
+# To avoid breaking things, Postfix will use backwards-compatible
+# default settings and log where it uses those old backwards-compatible
+# default settings, until the system administrator has determined
+# if any backwards-compatible default settings need to be made
+# permanent in main.cf or master.cf.
+#
+# When this review is complete, update the compatibility_level setting
+# below as recommended in the RELEASE_NOTES file.
+#
+# The level below is what should be used with new (not upgrade) installs.
+#
+compatibility_level = 3.8
+
+# LOCAL PATHNAME INFORMATION
+#
+# The queue_directory specifies the location of the Postfix queue.
+# This is also the root directory of Postfix daemons that run chrooted.
+# See the files in examples/chroot-setup for setting up Postfix chroot
+# environments on different UNIX systems.
+#
+queue_directory = /var/spool/postfix
+
+# The command_directory parameter specifies the location of all
+# postXXX commands.
+#
+command_directory = /usr/bin
+
+# The daemon_directory parameter specifies the location of all Postfix
+# daemon programs (i.e. programs listed in the master.cf file). This
+# directory must be owned by root.
+#
+daemon_directory = /usr/lib/postfix/bin
+
+# The data_directory parameter specifies the location of Postfix-writable
+# data files (caches, random numbers). This directory must be owned
+# by the mail_owner account (see below).
+#
+data_directory = /var/lib/postfix
+
+# QUEUE AND PROCESS OWNERSHIP
+#
+# The mail_owner parameter specifies the owner of the Postfix queue
+# and of most Postfix daemon processes.  Specify the name of a user
+# account THAT DOES NOT SHARE ITS USER OR GROUP ID WITH OTHER ACCOUNTS
+# AND THAT OWNS NO OTHER FILES OR PROCESSES ON THE SYSTEM.  In
+# particular, don't specify nobody or daemon. PLEASE USE A DEDICATED
+# USER.
+#
+mail_owner = postfix
+
+# The unknown_local_recipient_reject_code specifies the SMTP server
+# response code when a recipient domain matches $mydestination or
+# ${proxy,inet}_interfaces, while $local_recipient_maps is non-empty
+# and the recipient address or address local-part is not found.
+#
+# The default setting is 550 (reject mail) but it is safer to start
+# with 450 (try again later) until you are certain that your
+# local_recipient_maps settings are OK.
+#
+unknown_local_recipient_reject_code = 550
+
+# TRUST AND RELAY CONTROL
+#
+# The SASL plug-in type that the Postfix SMTP server should use for
+# authentication. The available types are listed with the "postconf -a"
+# command.
+#
+# The default setting is cyrus.
+smtpd_sasl_type = dovecot
+
+# Implementation-specific information that the Postfix SMTP server
+# passes through to the SASL plug-in implementation that is selected
+# with smtpd_sasl_type. Typically this specifies the name of a
+# configuration file or rendezvous point.
+#
+# The default setting is smtpd.
+smtpd_sasl_path = private/auth
+
+# Enable SASL authentication in the Postfix SMTP server. By default, the
+# Postfix SMTP server does not use authentication.
+#
+# The default setting is no.
+smtpd_sasl_auth_enable = yes
+
+# Enable interoperability with remote SMTP clients that implement an
+# obsolete version of the AUTH command (RFC 4954). Examples of such
+# clients are MicroSoft Outlook Express version 4 and MicroSoft Exchange
+# version 5.0.
+#
+# The default setting is no.
+broken_sasl_auth_clients = yes
+
+# Report the SASL authenticated user name in the smtpd(8) Received
+# message header.
+#
+# The default setting is no.
+smtpd_sasl_authenticated_header = yes
+
+# Optional restrictions that the Postfix SMTP server applies in the
+# context of a client RCPT TO command, after smtpd_relay_restrictions.
+# See SMTPD_ACCESS_README, section "Delayed evaluation of SMTP access
+# restriction lists" for a discussion of evaluation context and time.
+#
+# For defualts see `postconf -d` output.
+smtpd_recipient_restrictions = permit_mynetworks,
+                               permit_sasl_authenticated,
+                               reject_invalid_hostname,
+                               reject_non_fqdn_hostname,
+                               reject_non_fqdn_sender,
+                               reject_non_fqdn_recipient,
+                               reject_unknown_sender_domain,
+                               reject_unknown_recipient_domain,
+                               reject_unauth_destination,
+                               reject_rbl_client sbl.spamhaus.org,
+                               reject_rbl_client cbl.abuseat.org,
+                               reject_rbl_client dul.dnsbl.sorbs.net,
+                               reject_rbl_client bl.spamcop.net,
+                               check_sender_access pcre:/etc/postfix/sender_access
+
+# Opportunistic TLS: announce STARTTLS support to remote SMTP clients,
+# but do not require that clients use TLS encryption.
+# The default setting is no.
+smtpd_use_tls = yes
+
+# File with the Postfix SMTP server RSA certificate in PEM format. This
+# file may also contain the Postfix SMTP server private RSA key.
+#
+# The default setting is empty.
+smtpd_tls_cert_file = /etc/letsencrypt/live/mail.ilvokhin.com/fullchain.pem
+
+# File with the Postfix SMTP server RSA private key in PEM format.
+#
+# The default setting is $smtpd_tls_cert_file.
+smtpd_tls_key_file = /etc/letsencrypt/live/mail.ilvokhin.com/privkey.pem
+
+# The default SMTP TLS security level for the Postfix SMTP client.
+#
+# The default setting is empty.
+smtp_tls_security_level = may
+
+# The lookup tables that the proxymap(8) server is allowed to access for
+# the read-only service.
+#
+# For defualts see `postconf -d` output. 
+proxy_read_maps = $local_recipient_maps
+                  $mydestination
+                  $virtual_alias_maps
+                  $virtual_alias_domains
+                  $virtual_mailbox_maps
+                  $virtual_mailbox_domains
+                  $relay_recipient_maps
+                  $relay_domains
+                  $canonical_maps
+                  $sender_canonical_maps
+                  $recipient_canonical_maps
+                  $relocated_maps
+                  $transport_maps
+                  $mynetworks
+
+# Milter settings are here fro DKIM support.
+#
+# A list of Milter (mail filter) applications for new mail that arrives
+# via the Postfix smtpd(8) server. Specify space or comma as separator.
+# See the MILTER_README document for details.
+#
+# The default setting is empty.
+smtpd_milters = inet:localhost:8891
+
+# A list of Milter (mail filter) applications for new mail that does not
+# arrive via the Postfix smtpd(8) server.
+#
+# The default setting is empty.
+non_smtpd_milters = $smtpd_milters
+
+# The default action when a Milter (mail filter) response is unavailable
+# (for example, bad Postfix configuration or Milter failure).
+#
+# The default value is tempfail.
+milter_default_action = accept
+
+# ADDRESS REDIRECTION (VIRTUAL DOMAIN)
+#
+# The VIRTUAL_README document gives information about the many forms
+# of domain hosting that Postfix supports.
+#
+# Postfix is the final destination for the specified list of domains;
+# mail is delivered via the $virtual_transport mail delivery transport.
+#
+# The default setting is $virtual_mailbox_maps.
+virtual_mailbox_domains = ilvokhin.com
+
+# A prefix that the virtual(8) delivery agent prepends to all pathname
+# results from $virtual_mailbox_maps table lookups.
+#
+# The default setting is empty.
+virtual_mailbox_base = /var/mail
+
+# Optional lookup tables with aliases that apply to all recipients:
+# local(8), virtual, and remote; this is unlike alias_maps that apply
+# only to local(8) recipients.
+#
+# The default setting is $virtual_maps.
+virtual_alias_maps = hash:/etc/postfix/virtual
+
+# The default mail delivery transport and next-hop destination for final
+# delivery to domains listed with $virtual_mailbox_domains. This
+# information can be overruled with the transport(5) table.
+#
+# The default setting is virtual.
+virtual_transport = dovecot
+
+# ALIAS DATABASE
+#
+# The alias_maps parameter specifies the list of alias databases used
+# by the local delivery agent. The default list is system dependent.
+#
+# On systems with NIS, the default is to search the local alias
+# database, then the NIS alias database. See aliases(5) for syntax
+# details.
+# 
+# If you change the alias database, run "postalias /etc/aliases" (or
+# wherever your system stores the mail alias file), or simply run
+# "newaliases" to build the necessary DBM or DB file.
+#
+# It will take a minute or so before changes become visible.  Use
+# "postfix reload" to eliminate the delay.
+
+# Optional lookup tables with aliases that apply only to local(8) recipients
+#
+# For defualts see `postconf -d` output.
+alias_maps = hash:/etc/postfix/aliases
+
+# The alias_database parameter specifies the alias database(s) that
+# are built with "newaliases" or "sendmail -bi".  This is a separate
+# configuration parameter, because alias_maps (see above) may specify
+# tables that are not necessarily all under control by Postfix.
+#
+# For defualts see `postconf -d` output.
+alias_database = $alias_maps
+
+# ADDRESS EXTENSIONS (e.g., user+foo)
+#
+# The recipient_delimiter parameter specifies the separator between
+# user names and address extensions (user+foo). See canonical(5),
+# local(8), relocated(5) and virtual(5) for the effects this has on
+# aliases, canonical, virtual, relocated and .forward file lookups.
+# Basically, the software tries user+foo and .forward+foo before
+# trying user and .forward.
+#
+recipient_delimiter = +
+
+# JUNK MAIL CONTROLS
+# 
+# The controls listed here are only a very small subset. The file
+# SMTPD_ACCESS_README provides an overview.
+
+# The header_checks parameter specifies an optional table with patterns
+# that each logical message header is matched against, including
+# headers that span multiple physical lines.
+#
+# By default, these patterns also apply to MIME headers and to the
+# headers of attached messages. With older Postfix versions, MIME and
+# attached message headers were treated as body text.
+#
+# For details, see "man header_checks".
+#
+body_checks = pcre:/etc/postfix/body_checks
+
+# DEBUGGING CONTROL
+#
+# The debug_peer_level parameter specifies the increment in verbose
+# logging level when an SMTP client or server host name or address
+# matches a pattern in the debug_peer_list parameter.
+#
+debug_peer_level = 2
+
+# The debugger_command specifies the external command that is executed
+# when a Postfix daemon program is run with the -D option.
+#
+# Use "command .. & sleep 5" so that the debugger can attach before
+# the process marches on. If you use an X-based debugger, be sure to
+# set up your XAUTHORITY environment variable before starting Postfix.
+#
+debugger_command =
+	 PATH=/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
+	 ddd $daemon_directory/$process_name $process_id & sleep 5
+
+# INSTALL-TIME CONFIGURATION INFORMATION
+#
+# The following parameters are used when installing a new Postfix version.
+# 
+# sendmail_path: The full pathname of the Postfix sendmail command.
+# This is the Sendmail-compatible mail posting interface.
+# 
+sendmail_path = /usr/bin/sendmail
+
+# newaliases_path: The full pathname of the Postfix newaliases command.
+# This is the Sendmail-compatible command to build alias databases.
+#
+newaliases_path = /usr/bin/newaliases
+
+# mailq_path: The full pathname of the Postfix mailq command.  This
+# is the Sendmail-compatible mail queue listing command.
+# 
+mailq_path = /usr/bin/mailq
+
+# setgid_group: The group for mail submission and queue management
+# commands.  This must be a group name with a numerical group ID that
+# is not shared with other accounts, not even with the Postfix account.
+#
+setgid_group = postdrop
+
+# html_directory: The location of the Postfix HTML documentation.
+#
+html_directory = no
+
+# manpage_directory: The location of the Postfix on-line manual pages.
+#
+manpage_directory = /usr/share/man
+
+# sample_directory: The location of the Postfix sample configuration files.
+# This parameter is obsolete as of Postfix 2.1.
+#
+sample_directory = /etc/postfix
+
+# readme_directory: The location of the Postfix README files.
+#
+readme_directory = /usr/share/doc/postfix
+inet_protocols = ipv4
+shlib_directory = /usr/lib/postfix
+meta_directory = /etc/postfix

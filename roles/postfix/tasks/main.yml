@@ -1,0 +1,57 @@
+- name: Install postfix
+  ansible.builtin.package:
+    name:
+      - postfix
+      - postfix-pcre
+    state: present
+
+- name: Copy postfix lookup tables
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: /etc/postfix/
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  loop:
+    - files/virtual
+  notify:
+    - Update postfix lookup tables
+    - Reload postfix
+
+- name: Copy postfix additional restriction files
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: /etc/postfix/
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  loop:
+    - files/sender_access
+    - files/body_checks
+  notify:
+    - Reload postfix
+
+- name: Configure postfix
+  ansible.builtin.copy:
+    src: files/main.cf
+    dest: /etc/postfix/main.cf
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Check postfix
+    - Reload postfix
+
+- name: Copy postfix certificate renewal hook
+  ansible.builtin.copy:
+    src: files/postfix.sh
+    dest: /etc/letsencrypt/renewal-hooks/deploy/postfix.sh
+    owner: root
+    group: root
+    mode: u+rwx,g+r,o+r
+
+- name: Enable postfix systemd service
+  ansible.builtin.service:
+    name: postfix
+    enabled: yes
+    state: started
