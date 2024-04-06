@@ -1,0 +1,10 @@
+# Source of insipration for this setup is "NSA-proof your e-mail in 2 hours"
+# blog post by Drew Crawford.
+
+- name: Setup machines to receive and send mail
+  hosts: mail
+  roles:
+    - { role: certmail }
+    - { role: opendkim }
+    - { role: dovecot }
+    - { role: postfix }
