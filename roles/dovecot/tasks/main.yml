@@ -1,0 +1,63 @@
+- name: Install dovecot
+  ansible.builtin.package:
+    name:
+      - dovecot
+    state: present
+
+- name: Create vmail group
+  ansible.builtin.group:
+    name: vmail
+    gid: 5000
+    state: present
+
+- name: Create vmail user
+  ansible.builtin.user:
+    name: vmail
+    uid: 5000
+    group: vmail
+    shell: /usr/bin/nologin
+    state: present
+
+- name: Setup dovecot config directory
+  ansible.builtin.file:
+    path: /etc/dovecot
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+# Note: use `doveadm pw -s SHA512-CRYPT` to generate a new password.
+- name: Copy dovecot passwd file
+  ansible.builtin.copy:
+    src: files/users
+    dest: /etc/dovecot/passwd
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload dovecot
+
+- name: Configure dovecot
+  ansible.builtin.copy:
+    src: files/dovecot.conf
+    dest: /etc/dovecot/dovecot.conf
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Check dovecot
+    - Reload dovecot
+
+- name: Copy dovecot certificate renewal hook
+  ansible.builtin.copy:
+    src: files/dovecot.sh
+    dest: /etc/letsencrypt/renewal-hooks/deploy/dovecot.sh
+    owner: root
+    group: root
+    mode: u+rwx,g+r,o+r
+
+- name: Enable dovecot systemd service
+  ansible.builtin.service:
+    name: dovecot
+    enabled: yes
+    state: started

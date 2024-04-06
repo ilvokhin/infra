@@ -1,0 +1,7 @@
+- name: Reload dovecot
+  ansible.builtin.service:
+    name: dovecot
+    state: reloaded
+
+- name: Check dovecot
+  ansible.builtin.command: doveconf > /dev/null 
