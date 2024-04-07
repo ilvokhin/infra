@@ -44,6 +44,12 @@ VPNs at gate.ilvokhin.com:
 Stretch goal is to re-setup water and flame as well, but this is not urgent and
 a bit tricky to do remotely.
 
+LATER
+
+* Install fail2ban.
+* Set correct hostname for each host.
+* Clean pacman caches.
+
 
 DOTFILES
 
