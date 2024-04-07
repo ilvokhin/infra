@@ -54,6 +54,15 @@ data_directory = /var/lib/postfix
 #
 mail_owner = postfix
 
+# INTERNET HOST AND DOMAIN NAMES
+#
+# The myhostname parameter specifies the internet hostname of this
+# mail system. The default is to use the fully-qualified domain name
+# from gethostname(). $myhostname is used as a default value for many
+# other configuration parameters.
+#
+myhostname = mail.ilvokhin.com
+
 # The unknown_local_recipient_reject_code specifies the SMTP server
 # response code when a recipient domain matches $mydestination or
 # ${proxy,inet}_interfaces, while $local_recipient_maps is non-empty
@@ -66,6 +75,33 @@ mail_owner = postfix
 unknown_local_recipient_reject_code = 550
 
 # TRUST AND RELAY CONTROL
+
+# The mynetworks parameter specifies the list of "trusted" SMTP
+# clients that have more privileges than "strangers".
+#
+# In particular, "trusted" SMTP clients are allowed to relay mail
+# through Postfix.  See the smtpd_recipient_restrictions parameter
+# in postconf(5).
+#
+# You can specify the list of "trusted" network addresses by hand
+# or you can let Postfix do it for you (which is the default).
+#
+# By default (mynetworks_style = subnet), Postfix "trusts" SMTP
+# clients in the same IP subnetworks as the local machine.
+# On Linux, this does works correctly only with interfaces specified
+# with the "ifconfig" command.
+#
+# Specify "mynetworks_style = class" when Postfix should "trust" SMTP
+# clients in the same IP class A/B/C networks as the local machine.
+# Don't do this with a dialup site - it would cause Postfix to "trust"
+# your entire provider's network.  Instead, specify an explicit
+# mynetworks list by hand, as described below.
+#
+# Specify "mynetworks_style = host" when Postfix should "trust"
+# only the local machine.
+#
+mynetworks_style = host
+
 #
 # The SASL plug-in type that the Postfix SMTP server should use for
 # authentication. The available types are listed with the "postconf -a"
