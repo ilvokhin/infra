@@ -10,3 +10,6 @@
   ansible.builtin.command: postmap {{ item }}
   with_items:
     - /etc/postfix/virtual
+
+- name: Update aliases
+  ansible.builtin.command: newaliases
