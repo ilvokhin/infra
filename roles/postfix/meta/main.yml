@@ -1,4 +1,4 @@
 dependencies:
   - role: certmail
   - role: opendkim
-  - role: dovecot
+  # Postfix use dovecot, but dovecot not a hard dependency for it.
