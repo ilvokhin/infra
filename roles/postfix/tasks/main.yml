@@ -5,6 +5,20 @@
       - postfix-pcre
     state: present
 
+- name: Setup correct alias for root mail
+  ansible.builtin.lineinfile:
+    dest: /etc/postfix/aliases
+    state: present
+    # YAML requires escape string to be encoded in double quotes.
+    regexp: "^(#)?root:\t\t(you|d)"
+    line: "root:\t\td"
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Update aliases
+    - Reload postfix
+
 - name: Copy postfix lookup tables
   ansible.builtin.copy:
     src: '{{ item }}'
