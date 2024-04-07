@@ -47,11 +47,14 @@
 
 - name: Configure postfix
   ansible.builtin.copy:
-    src: files/main.cf
-    dest: /etc/postfix/main.cf
+    src: '{{ item }}'
+    dest: /etc/postfix/
     owner: root
     group: root
     mode: u+rw,g+r,o+r
+  loop:
+    - files/master.cf
+    - files/main.cf
   notify:
     - Check postfix
     - Reload postfix
