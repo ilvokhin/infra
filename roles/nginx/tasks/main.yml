@@ -45,11 +45,16 @@
 
 - name: Copy nginx certificate renewal hook
   ansible.builtin.copy:
-    src: files/nginx.sh
-    dest: /etc/letsencrypt/renewal-hooks/deploy/nginx.sh
+    src: 'files/hooks/{{ item }}/nginx.sh'
+    dest: '/etc/letsencrypt/renewal-hooks/{{ item }}/nginx.sh'
     owner: root
     group: root
     mode: u+rwx,g+r,o+r
+  loop:
+    - pre
+    - post
+    # There is no deploy hook and it is intentional. As we currently stop nginx
+    # before renewal and start it after, so there is no need for reload.
 
 - name: Enable nginx systemd service
   ansible.builtin.service:

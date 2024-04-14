@@ -13,3 +13,14 @@
         -d {{ domains | join(' -d ') }}
   args:
     creates: '/etc/letsencrypt/live/{{ domains | first }}/fullchain.pem'
+
+# TODO: rewrite this role or make it more generic.
+#
+# Currently we reuse certificate role for web and mail servers, but they
+# are actually quite different.
+# * We can't start nginx without valid certificate, but can start postfix (and
+# dovecot?).
+# * We can serve acme challenge with nginx itself on renewal, but we need
+# `--standalone` mode for mail server (or need to bring nginx).
+# * It is undesirable to bring down nginx any time we are updating
+# SSL certificates.
