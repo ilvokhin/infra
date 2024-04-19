@@ -242,7 +242,7 @@ virtual_mailbox_base = /var/mail
 # only to local(8) recipients.
 #
 # The default setting is $virtual_maps.
-virtual_alias_maps = hash:/etc/postfix/virtual
+virtual_alias_maps = lmdb:/etc/postfix/virtual
 
 # The default mail delivery transport and next-hop destination for final
 # delivery to domains listed with $virtual_mailbox_domains. This
@@ -270,7 +270,7 @@ virtual_transport = dovecot
 # Optional lookup tables with aliases that apply only to local(8) recipients
 #
 # For defualts see `postconf -d` output.
-alias_maps = hash:/etc/postfix/aliases
+alias_maps = lmdb:/etc/postfix/aliases
 
 # The alias_database parameter specifies the alias database(s) that
 # are built with "newaliases" or "sendmail -bi".  This is a separate
