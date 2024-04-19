@@ -7,26 +7,21 @@ Host *
 
 Host gate
     Hostname gate.ilvokhin.com
-    User d
     ForwardAgent yes
 
 Host sun
     Hostname sun.ilvokhin.com
-    User d
 
 Host mail
     Hostname mail.ilvokhin.com
-    User d
 
 # Moscow machines behind NAT.
 Host water
     ProxyJump gate
     Hostname 10.9.8.2
-    User d
     ForwardAgent yes
 
 Host flame
     ProxyJump gate
     Hostname 10.9.9.2
-    User d
     ForwardAgent yes
