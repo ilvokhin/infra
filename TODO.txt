@@ -46,7 +46,6 @@ a bit tricky to do remotely.
 
 LATER
 
-* Install fail2ban.
 * Set correct hostname for each host.
 
 
