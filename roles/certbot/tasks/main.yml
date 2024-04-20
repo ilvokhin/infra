@@ -36,7 +36,11 @@
     mode: u+rw,g+r,o+r
 
 - name: Enable certbot systemd timer
-  ansible.builtin.service:
+  # `ansible.builtin.systemd_service` used here intentionally instead of
+  # `ansible.builtin.service` to issue `systemctl daemon-reload` in case of
+  # changes in Ansible managed unit file.
+  ansible.builtin.systemd_service:
     name: certbot.timer
     enabled: yes
     state: started
+    daemon_reload: true

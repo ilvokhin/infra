@@ -48,7 +48,6 @@ LATER
 
 * Install fail2ban.
 * Set correct hostname for each host.
-* Do `systemctl daemon-reload` on unit updates?
 
 
 DOTFILES
