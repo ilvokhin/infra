@@ -1,0 +1,11 @@
+- name: Install paccache
+  ansible.builtin.package:
+    name:
+      - pacman-contrib
+    state: present
+
+- name: Enable paccache timer
+  ansible.builtin.service:
+    name: paccache.timer
+    enabled: yes
+    state: started
