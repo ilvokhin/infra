@@ -31,8 +31,23 @@ mimetype.pdf=application/pdf
 mimetype.png=image/png
 mimetype.svg=image/svg+xml
 
-# Automatically search for the repositories.
-scan-path=/srv/git/
-
 # To fix messed up urls.
 virtual-root=/
+
+# List of repositories. This is explicit list instead of scan-path to allow
+# private repositories.
+
+# Blog
+repo.url=blog.git
+repo.path=/srv/git/blog.git
+repo.desc=Code and content for blog.ilvokhin.com.
+
+# Home
+repo.url=home.git
+repo.path=/srv/git/home.git
+repo.desc=Code for ilvokhin.com.
+
+# Infra
+repo.url=infra.git
+repo.path=/srv/git/infra.git
+repo.desc=Ansible playbooks for personal infrastructure.
