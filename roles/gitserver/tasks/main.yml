@@ -65,11 +65,20 @@
     group: git
     mode: u+rwx,g+r,o+r
 
+- name: Configure git-daemon systemd service
+  ansible.builtin.copy:
+    src: files/git-daemon.service
+    dest: /usr/lib/systemd/system/git-daemon@.service
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
 - name: Enable git-daemon
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: git-daemon.socket
     enabled: yes
     state: started
+    daemon_reload: true
 
 - name: Setup auth directory for git
   ansible.builtin.file:
