@@ -37,17 +37,17 @@ virtual-root=/
 # List of repositories. This is explicit list instead of scan-path to allow
 # private repositories.
 
-# Blog
+# Blog.
 repo.url=blog.git
 repo.path=/srv/git/blog.git
 repo.desc=Code and content for blog.ilvokhin.com.
 
-# Home
+# Home.
 repo.url=home.git
 repo.path=/srv/git/home.git
 repo.desc=Code for ilvokhin.com.
 
-# Infra
+# Infra.
 repo.url=infra.git
 repo.path=/srv/git/infra.git
 repo.desc=Ansible playbooks for personal infrastructure.
