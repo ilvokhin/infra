@@ -88,7 +88,7 @@
 
 - name: Copy git .htpasswd file to manage HTTP passwords
   ansible.builtin.copy:
-    src: files/.htpasswd
+    src: files/htpasswd
     dest: /etc/nginx/auth/git/.htpasswd
     owner: root
     group: root
