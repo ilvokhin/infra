@@ -1,9 +1,6 @@
 server {
     server_name git.ilvokhin.com;
 
-    auth_basic "Restricted";
-    auth_basic_user_file /etc/nginx/auth/git/.htpasswd;
-
     # Asterisk (*) is here to match both git.conf and cgit.conf (if the latter
     # exists), because cgit comes with a separate role, but they share one
     # server (git.ilvokhin.com) for usage convenience.
