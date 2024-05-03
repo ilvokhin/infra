@@ -2,17 +2,17 @@
 
 # Usage examples
 #
-# Init private repository and mirror it to github.
-# ./init-git-repo.sh --private --mirror repo.git
+# Init public repository and mirror it to github.
+# ./init-git-repo.sh --public --mirror repo.git
 
-private=0
+public=0
 mirror=0
 repo=""
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -p|--private)
-            private=1
+        -p|--public)
+            public=1
             shift
             ;;
         -m|--mirror)
@@ -39,7 +39,7 @@ mkdir $repo
 cd $repo
 git init --bare
 
-if [ $private -eq 0 ]; then
+if [ $public -eq 1 ]; then
     touch git-daemon-export-ok
 fi
 
