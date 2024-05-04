@@ -12,9 +12,9 @@
   ansible.posix.authorized_key:
     user: d
     state: present
-    key: '{{ item }}'
-  with_file:
-    - misc/pubkeys/d.pub
+    key: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - misc/pubkeys/*.pub
   tags:
     - dotfiles
 
