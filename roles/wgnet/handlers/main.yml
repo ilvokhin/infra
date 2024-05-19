@@ -1,2 +1,4 @@
-- name: Reload network
-  ansible.builtin.command: networkctl reload
+- name: Reload wgnet
+  ansible.builtin.service:
+    name: wg-quick@wg0
+    state: reloaded

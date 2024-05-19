@@ -1,0 +1,14 @@
+[Interface]
+PrivateKey = {{ wireguard_private_key }}
+Address = 10.0.0.1/24
+ListenPort = 51820
+
+# flame
+[Peer]
+PublicKey = YUuBBTKHXsD6tTzcAVWXakZffWKlGS5fAdx7zWSXtlI=
+AllowedIPs = 10.0.0.2/32
+
+# water
+[Peer]
+PublicKey = X0Gw37N+AUkZjiyZ9buZ8c2ZzFr+niX3FZjxlyqQq0Q=
+AllowedIPs = 10.0.0.3/32
