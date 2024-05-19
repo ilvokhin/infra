@@ -1,0 +1,21 @@
+- name: Configure IPv4 and IPv6 packet forwarding
+  ansible.builtin.sysctl:
+    name: '{{ item }}'
+    value: '1'
+    sysctl_set: true
+  loop:
+    - net.ipv4.ip_forward
+    - net.ipv4.conf.all.forwarding
+    - net.ipv6.conf.all.forwarding
+
+- name: Configure WireGuard for wgnet
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "/etc/systemd/network/{{ item.dest }}"
+    owner: systemd-network
+    group: systemd-network
+    mode: u+rw,g+r,o+r
+  loop:
+    - { src: templates/wg0.netdev.j2, dest: wg0.netdev }
+    - { src: templates/wg0.network.j2, dest: wg0.network }
+  notify: Reload network

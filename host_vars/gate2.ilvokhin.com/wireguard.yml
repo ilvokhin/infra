@@ -1,0 +1,8 @@
+wireguard_public_key: v+ChgF+9IMFK5aN/ngthtZ38Jp7Rr1WVeS2mhQnQ4UE=
+wgnet_ip: 10.0.0.1
+
+# Reserved for flame.
+# wgnet_ip: 10.0.0.2
+
+# Reserved for water.
+# wgnet_ip: 10.0.0.3

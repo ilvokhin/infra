@@ -1,3 +1,4 @@
 - ansible.builtin.import_playbook: essential.yml
 - ansible.builtin.import_playbook: web.yml
 - ansible.builtin.import_playbook: mail.yml
+- ansible.builtin.import_playbook: vpn.yml

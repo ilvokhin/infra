@@ -1,0 +1,4 @@
+- name: Setup VPN machines
+  hosts: vpn
+  roles:
+    - { role: wgnet }

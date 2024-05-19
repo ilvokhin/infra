@@ -1,0 +1,2 @@
+- name: Reload network
+  ansible.builtin.command: networkctl reload
