@@ -1,0 +1,23 @@
+- name: Configure WireGuard for wgvpn
+  ansible.builtin.template:
+    src: templates/wg1.conf.j2
+    dest: /etc/wireguard/wg1.conf
+    owner: root
+    group: root
+    mode: u+rw,g-rw,o-rw
+  notify: Reload wgvpn
+
+- name: Configure systemd-resolved for wgvpn
+  ansible.builtin.copy:
+    src: files/wgvpn.conf
+    dest: /etc/systemd/resolved.conf.d/wgvpn.conf
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify: Restart systemd-resolved
+
+- name: Enable WireGuard service for wgvpn
+  ansible.builtin.service:
+    name: wg-quick@wg1
+    enabled: yes
+    state: started

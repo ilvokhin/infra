@@ -2,3 +2,4 @@
   hosts: vpn
   roles:
     - { role: wgnet }
+    - { role: wgvpn }

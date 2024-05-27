@@ -1,0 +1,9 @@
+- name: Reload wgvpn
+  ansible.builtin.service:
+    name: wg-quick@wg1
+    state: reloaded
+
+- name: Restart systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: restart
