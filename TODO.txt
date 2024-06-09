@@ -60,3 +60,6 @@ REFERENCES
 [2]: https://github.com/cdown/ansible-desktop
 [3]: https://github.com/rudenkornk/dotfiles
 [4]: https://stackoverflow.com/a/48892377/1313516
+[5]: https://www.procustodibus.com/blog/2022/06/multi-hop-wireguard
+[6]: https://casavant.org/2020/10/10/wireguard-fwmark.html
+[7]: https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy
