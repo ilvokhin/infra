@@ -1,0 +1,41 @@
+- name: Install tor
+  ansible.builtin.package:
+    name:
+      - tor
+    state: present
+
+- name: Create /etc/torrc.d for drop-in tor configs
+  ansible.builtin.file:
+    path: /etc/torrc.d
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+- name: Allow usage of drop-in configs from /etc/torrc.d
+  ansible.builtin.lineinfile:
+    dest: /etc/tor/torrc
+    state: present
+    regexp: '^(#)?%include /etc/torrc.d/\*.conf'
+    line: '%include /etc/torrc.d/*.conf'
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload tor
+
+- name: Configure Tor middlebox
+  ansible.builtin.copy:
+    src: files/middlebox.conf
+    dest: /etc/torrc.d/middlebox.conf
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload tor
+
+- name: Enable tor systemd service
+  ansible.builtin.service:
+    name: tor
+    enabled: yes
+    state: started

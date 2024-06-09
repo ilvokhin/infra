@@ -1,0 +1,4 @@
+- name: Reload tor
+  ansible.builtin.service:
+    name: tor
+    state: reloaded
