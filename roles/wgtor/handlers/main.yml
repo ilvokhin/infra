@@ -1,0 +1,7 @@
+# Use restart instead of reload, because reload uses `wg syncconf` under the
+# hood, which only updates config, but do not run `PostUp` and `PostDown`
+# hooks.
+- name: Restart wgtor
+  ansible.builtin.service:
+    name: wg-quick@wg2
+    state: restarted
