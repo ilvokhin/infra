@@ -3,3 +3,5 @@
   roles:
     - { role: wgnet }
     - { role: wgvpn }
+    - { role: wgtor }
+    - { role: tor }
