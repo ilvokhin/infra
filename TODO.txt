@@ -1,51 +1,9 @@
-ANSIBLE
+TODO
 
-* How to store secrets in the repo?
-* Is there a way to make playbooks cross-platform? For example have same setup
-  for CentOS and Arch Linux? Is it possible to extend it to macOS?
-* Figure out directory structure.
-* How to bootstrap python?
-
-
-DISTRIBUTION
-
-* Which distribution migrate to? CentOS Stream? Arch Linux? Debian? Ubuntu?
-
-
-SETUP
-
-CentOS 8 Stream EOL is May 31, 2024, so need to re-setup sun.ilvokhin.com
-first.
-
-* Git Server (SSH + HTTP/HTTPS).
-* CGit (git.ilvokhin.com).
-* Blog (blog.ilvokhin.com).
-* Homepage (ilvokhin.com).
-* Ip (ip.ilvokhin.com).
-
-CentOS 7 EOL is 30 June, 2024, it is everything else.
-
-Mail server at mail.ilvokhin.com:
-
-* Postfix.
-* Dovecot.
-
-VPNs at gate.ilvokhin.com:
-
-* OpenVPN to Amsterdam.
-* TOR.
-* OpenVPN to TOR.
-* OpenVPN to water.
-* OpenVPN to flame.
-* Telegram Proxy. Do I still need it?
-* Setup VPN to AMS with a native macOS interface? L2TP over IPSec, Cisco IPSec, IKEv2?
-* Setup VPN to Moscow home network?
-
-Stretch goal is to re-setup water and flame as well, but this is not urgent and
-a bit tricky to do remotely.
-
-LATER
-
+* Make wireguard interfaces names readable.
+* Automate snapshots and reboots.
+* Enable ipv6 for wireguard.
+* Setup L2TP/IPsec VPN server.
 * Set correct hostname for each host.
 
 
