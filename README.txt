@@ -35,7 +35,7 @@ $ ANSIBLE_CONFIG=/tmp/ansible.cfg \
 
 ROTATE VAULT PASSWORD
 
-$ bin/rotate-vault-password.sh
+$ bin/rotate-vault-password
 
 
 REFERENCES
