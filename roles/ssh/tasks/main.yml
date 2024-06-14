@@ -21,8 +21,8 @@
 - name: Configure ssh for Dmitry Ilvokhin
   ansible.builtin.template:
     src: misc/dotfiles/ssh/config.j2
-    dest: "~{{ user }}/.ssh/config"
-    owner: "{{ user }}"
+    dest: /home/d/.ssh/config
+    owner: d
     mode: u+rw,g-rw,o-rw
   when:
     - jumphost
@@ -32,8 +32,8 @@
 - name: Add ssh rc for Dmitry Ilvokhin
   ansible.builtin.copy:
     src: misc/dotfiles/ssh/rc
-    dest: "~{{ user }}/.ssh/rc"
-    owner: "{{ user }}"
+    dest: /home/d/.ssh/rc
+    owner: d
     mode: u+rwx,g-rw,o-rw
   when:
     - jumphost
