@@ -7,6 +7,14 @@
     mode: u+rw,g-rw,o-rw
   notify: Restart wgvpn
 
+- name: Setup systemd-resolved drop-in config directory
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
 - name: Configure systemd-resolved for wgvpn
   ansible.builtin.copy:
     src: files/wgvpn.conf
