@@ -1,3 +1,5 @@
+# There is no iptables rules in wgnet config, so just reload wireguard config
+# is enough.
 - name: Reload wgnet
   ansible.builtin.service:
     name: wg-quick@wg0
