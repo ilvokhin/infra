@@ -1,7 +1,7 @@
 - name: Configure WireGuard for wgtor
   ansible.builtin.template:
-    src: templates/wg2.conf.j2
-    dest: /etc/wireguard/wg2.conf
+    src: templates/wgtor0.conf.j2
+    dest: /etc/wireguard/wgtor0.conf
     owner: root
     group: root
     mode: u+rw,g-rw,o-rw
@@ -9,6 +9,6 @@
 
 - name: Enable WireGuard service for wgtor
   ansible.builtin.service:
-    name: wg-quick@wg2
+    name: wg-quick@wgtor0
     enabled: yes
     state: started

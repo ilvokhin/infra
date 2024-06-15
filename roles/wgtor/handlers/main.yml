@@ -3,5 +3,5 @@
 # hooks.
 - name: Restart wgtor
   ansible.builtin.service:
-    name: wg-quick@wg2
+    name: wg-quick@wgtor0
     state: restarted
