@@ -1,6 +1,6 @@
 - name: Restart wgvpn
   ansible.builtin.service:
-    name: wg-quick@wg1
+    name: wg-quick@wgvpn0
     state: restarted
 
 - name: Restart systemd-resolved
