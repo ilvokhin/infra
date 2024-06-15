@@ -1,4 +1,5 @@
-# imap
+# IMAP.
+
 set imap_user = d@ilvokhin.com
 set folder = imaps://mail.ilvokhin.com
 set spoolfile = +INBOX
@@ -6,12 +7,14 @@ set record = +INBOX/Sent
 set postponed = +INBOX/Drafts
 set mbox = +INBOX/All
 
-# smtp
+# SMTP.
+
 set smtp_url = smtps://$imap_user@mail.ilvokhin.com
 set smtp_pass = $imap_pass
 set ssl_force_tls = yes
 
-# composition
+# Composition.
+
 set editor = `echo \$EDITOR`
 set edit_headers = yes
 set charset = UTF-8
@@ -23,3 +26,30 @@ set use_from = yes
 set sort=threads
 set sort_browser=date
 set sort_aux=reverse-last-date-received
+
+# Color definitions from CentOS.
+
+color hdrdefault red default
+color quoted brightblue default
+color signature red default
+color indicator brightyellow red
+color error brightred default
+color status yellow blue
+# The thread tree in the index menu.
+color tree magenta default
+color tilde magenta default
+color message brightcyan default
+color markers brightcyan default
+color attachment brightmagenta default
+# How to hilite search patterns in the pager.
+color search default green
+
+color header brightred default ^(From|Subject):
+# Point out URLs.
+color body magenta default "(ftp|http|https)://[^ ]+"
+# E-mail addresses.
+color body magenta default [-a-z_0-9.]+@[-a-z_0-9.]+
+color underline brightgreen default
+
+# Attributes when using a mono terminal.
+mono quoted bold
