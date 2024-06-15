@@ -1,0 +1,4 @@
+- name: Setup shell machines
+  hosts: shell
+  roles:
+    - { role: mutt }
