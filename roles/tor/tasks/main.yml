@@ -24,7 +24,7 @@
   notify:
     - Reload tor
 
-- name: Configure Tor middlebox
+- name: Configure tor middlebox
   ansible.builtin.copy:
     src: files/middlebox.conf
     dest: /etc/torrc.d/middlebox.conf
