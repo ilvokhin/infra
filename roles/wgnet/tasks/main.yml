@@ -1,7 +1,7 @@
 - name: Configure WireGuard for wgnet
   ansible.builtin.template:
-    src: templates/wg0.conf.j2
-    dest: /etc/wireguard/wg0.conf
+    src: templates/wgnet0.conf.j2
+    dest: /etc/wireguard/wgnet0.conf
     owner: root
     group: root
     # Config containes private key for this host, so permissions are
@@ -11,6 +11,6 @@
 
 - name: Enable WireGuard service for wgnet
   ansible.builtin.service:
-    name: wg-quick@wg0
+    name: wg-quick@wgnet0
     enabled: yes
     state: started

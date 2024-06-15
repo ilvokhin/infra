@@ -2,5 +2,5 @@
 # is enough.
 - name: Reload wgnet
   ansible.builtin.service:
-    name: wg-quick@wg0
+    name: wg-quick@wgnet0
     state: reloaded
