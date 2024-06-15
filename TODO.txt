@@ -1,6 +1,5 @@
 TODO
 
-* Make wireguard interfaces names readable.
 * Automate snapshots and reboots.
 * Enable ipv6 for wireguard.
 * Setup L2TP/IPsec VPN server.
