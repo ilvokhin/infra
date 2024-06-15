@@ -1,4 +1,4 @@
-- name: Configure WireGuard for wgvpn
+- name: Configure wireguard for wgvpn
   ansible.builtin.template:
     src: templates/wgvpn0.conf.j2
     dest: /etc/wireguard/wgvpn0.conf
@@ -24,7 +24,7 @@
     mode: u+rw,g+r,o+r
   notify: Restart systemd-resolved
 
-- name: Enable WireGuard service for wgvpn
+- name: Enable wireguard service for wgvpn
   ansible.builtin.service:
     name: wg-quick@wgvpn0
     enabled: yes

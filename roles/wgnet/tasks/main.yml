@@ -1,4 +1,4 @@
-- name: Configure WireGuard for wgnet
+- name: Configure wireguard for wgnet
   ansible.builtin.template:
     src: templates/wgnet0.conf.j2
     dest: /etc/wireguard/wgnet0.conf
@@ -9,7 +9,7 @@
     mode: u+rw,g-rw,o-rw
   notify: Reload wgnet
 
-- name: Enable WireGuard service for wgnet
+- name: Enable wireguard service for wgnet
   ansible.builtin.service:
     name: wg-quick@wgnet0
     enabled: yes
