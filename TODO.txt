@@ -1,9 +1,10 @@
 TODO
 
 * Automate snapshots and reboots.
-* Enable ipv6 for wireguard.
+* Enable IPv6 for wireguard.
 * Setup L2TP/IPsec VPN server.
 * Set correct hostname for each host.
+* Setup irssi client.
 
 
 DOTFILES
