@@ -14,11 +14,15 @@ Host sun mail
 
 # Moscow machines behind NAT.
 Host flame
+{% if inventory_hostname_short != "gate" %}
     ProxyJump gate
+{% endif %}
     Hostname 10.0.0.2
     ForwardAgent yes
 
 Host water
+{% if inventory_hostname_short != "gate" %}
     ProxyJump gate
+{% endif %}
     Hostname 10.0.0.3
     ForwardAgent yes
