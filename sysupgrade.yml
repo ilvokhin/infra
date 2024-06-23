@@ -3,7 +3,7 @@
   vars:
     digitalocean_api_url: https://api.digitalocean.com/v2
   vars_files:
-    - misc/vaults/digitalocean.yml
+    - misc/secrets/digitalocean.yml
   roles:
     - { role: shutdown }
     - { role: snapshot }

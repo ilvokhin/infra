@@ -1,7 +1,6 @@
 TODO
 
 * Automate snapshots and reboots.
-* Rename vaults -> secrets.
 * Fix quotes: use either single quotes or double quotes.
 * Replace true -> yes.
 * Enable IPv6 for wireguard.
