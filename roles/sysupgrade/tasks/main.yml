@@ -1,0 +1,9 @@
+- name: Update archlinux-keyring
+  ansible.builtin.package:
+    name: archlinux-keyring
+    state: latest
+
+- name: Upgrade all packages in the system
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes

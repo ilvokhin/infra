@@ -1,10 +1,14 @@
 TODO
 
 * Automate snapshots and reboots.
+* Rename vaults -> secrets.
+* Fix quotes: use either single quotes or double quotes.
+* Replace true -> yes.
 * Enable IPv6 for wireguard.
 * Setup L2TP/IPsec VPN server.
 * Set correct hostname for each host.
 * Setup irssi client.
+* Migrate from DigitalOcean snapshots to avoid vendor lock.
 
 
 DOTFILES

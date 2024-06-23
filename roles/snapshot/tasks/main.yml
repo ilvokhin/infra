@@ -1,0 +1,31 @@
+- name: Make droplet snapshot
+  local_action:
+    module: ansible.builtin.uri
+    url: "{{ digitalocean_api_url }}/droplets/{{ droplet_id }}/actions"
+    method: POST
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer {{ digitalocean_api_token }}
+    body_format: json
+    status_code: 201
+    body:
+      type: snapshot
+      name: "{{ inventory_hostname_short }}-\
+        {{ (now(utc=true).timestamp() * 1000) | int }}"
+  register: snapshot
+
+- name: Wait for droplet snapshot to finish
+  local_action:
+    module: ansible.builtin.uri
+    url: "{{ digitalocean_api_url }}/droplets/{{ droplet_id }}\
+      /actions/{{ snapshot.json.action.id }}"
+    method: GET
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer {{ digitalocean_api_token }}
+    body_format: json
+    status_code: 200
+  register: snapshot_info
+  until: snapshot_info.json.action.completed_at != None
+  retries: 16
+  delay: 60
