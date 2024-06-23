@@ -4,4 +4,4 @@
     state: reloaded
 
 - name: Check dovecot
-  ansible.builtin.command: doveconf > /dev/null 
+  ansible.builtin.command: doveconf > /dev/null

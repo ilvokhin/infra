@@ -183,7 +183,7 @@ smtp_tls_security_level = may
 # The lookup tables that the proxymap(8) server is allowed to access for
 # the read-only service.
 #
-# For defualts see `postconf -d` output. 
+# For defualts see `postconf -d` output.
 proxy_read_maps = $local_recipient_maps
                   $mydestination
                   $virtual_alias_maps
@@ -259,7 +259,7 @@ virtual_transport = lmtp:unix:private/dovecot-lmtp
 # On systems with NIS, the default is to search the local alias
 # database, then the NIS alias database. See aliases(5) for syntax
 # details.
-# 
+#
 # If you change the alias database, run "postalias /etc/aliases" (or
 # wherever your system stores the mail alias file), or simply run
 # "newaliases" to build the necessary DBM or DB file.
@@ -292,7 +292,7 @@ alias_database = $alias_maps
 recipient_delimiter = +
 
 # JUNK MAIL CONTROLS
-# 
+#
 # The controls listed here are only a very small subset. The file
 # SMTPD_ACCESS_README provides an overview.
 
@@ -330,10 +330,10 @@ debugger_command =
 # INSTALL-TIME CONFIGURATION INFORMATION
 #
 # The following parameters are used when installing a new Postfix version.
-# 
+#
 # sendmail_path: The full pathname of the Postfix sendmail command.
 # This is the Sendmail-compatible mail posting interface.
-# 
+#
 sendmail_path = /usr/bin/sendmail
 
 # newaliases_path: The full pathname of the Postfix newaliases command.
@@ -343,7 +343,7 @@ newaliases_path = /usr/bin/newaliases
 
 # mailq_path: The full pathname of the Postfix mailq command.  This
 # is the Sendmail-compatible mail queue listing command.
-# 
+#
 mailq_path = /usr/bin/mailq
 
 # setgid_group: The group for mail submission and queue management

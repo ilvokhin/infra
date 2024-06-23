@@ -4,7 +4,7 @@
       - nginx
     state: present
 
-- name: Setup nginx directories 
+- name: Setup nginx directories
   ansible.builtin.file:
     path: '{{ item }}'
     state: directory
