@@ -2,7 +2,8 @@ TODO
 
 * Automate snapshots and reboots.
 * Fix quotes: use either single quotes or double quotes.
-* Replace true -> yes.
+* Replace true -> yes or vice versa.
+* Enable linters: ansible-lint, yamllint.
 * Enable IPv6 for wireguard.
 * Setup L2TP/IPsec VPN server.
 * Set correct hostname for each host.
