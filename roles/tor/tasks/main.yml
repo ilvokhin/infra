@@ -34,8 +34,17 @@
   notify:
     - Reload tor
 
+- name: Configure tor systemd service
+  ansible.builtin.copy:
+    src: files/tor.service
+    dest: /usr/lib/systemd/system/tor.service
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
 - name: Enable tor systemd service
   ansible.builtin.service:
     name: tor
     enabled: yes
     state: started
+    daemon_reload: true
