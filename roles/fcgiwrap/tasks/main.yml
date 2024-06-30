@@ -7,5 +7,5 @@
 - name: Enable fcgiwrap.socket
   ansible.builtin.service:
     name: fcgiwrap.socket
-    enabled: yes
+    enabled: true
     state: started

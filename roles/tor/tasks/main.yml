@@ -45,6 +45,6 @@
 - name: Enable tor systemd service
   ansible.builtin.service:
     name: tor
-    enabled: yes
+    enabled: true
     state: started
     daemon_reload: true

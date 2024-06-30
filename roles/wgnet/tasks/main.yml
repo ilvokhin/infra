@@ -12,5 +12,5 @@
 - name: Enable wireguard service for wgnet
   ansible.builtin.service:
     name: wg-quick@wgnet0
-    enabled: yes
+    enabled: true
     state: started

@@ -41,6 +41,6 @@
   # changes in Ansible managed unit file.
   ansible.builtin.systemd_service:
     name: certbot.timer
-    enabled: yes
+    enabled: true
     state: started
     daemon_reload: true

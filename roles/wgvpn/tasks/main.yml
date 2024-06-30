@@ -27,5 +27,5 @@
 - name: Enable wireguard service for wgvpn
   ansible.builtin.service:
     name: wg-quick@wgvpn0
-    enabled: yes
+    enabled: true
     state: started

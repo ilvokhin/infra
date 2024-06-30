@@ -7,5 +7,5 @@
 - name: Enable logrotate timer
   ansible.builtin.service:
     name: logrotate.timer
-    enabled: yes
+    enabled: true
     state: started

@@ -7,5 +7,5 @@
 - name: Enable paccache timer
   ansible.builtin.service:
     name: paccache.timer
-    enabled: yes
+    enabled: true
     state: started

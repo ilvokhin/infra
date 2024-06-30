@@ -76,7 +76,7 @@
 - name: Enable git-daemon
   ansible.builtin.systemd_service:
     name: git-daemon.socket
-    enabled: yes
+    enabled: true
     state: started
     daemon_reload: true
 
