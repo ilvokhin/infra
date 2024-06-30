@@ -1,6 +1,5 @@
 - name: Make droplet snapshot
-  local_action:
-    module: ansible.builtin.uri
+  ansible.builtin.uri:
     url: "{{ digitalocean_api_url }}/droplets/{{ droplet_id }}/actions"
     method: POST
     headers:
@@ -13,10 +12,10 @@
       name: "{{ inventory_hostname_short }}-\
         {{ (now(utc=true).timestamp() * 1000) | int }}"
   register: snapshot
+  delegate_to: localhost
 
 - name: Wait for droplet snapshot to finish
-  local_action:
-    module: ansible.builtin.uri
+  ansible.builtin.uri:
     url: "{{ digitalocean_api_url }}/droplets/{{ droplet_id }}\
       /actions/{{ snapshot.json.action.id }}"
     method: GET
@@ -29,3 +28,4 @@
   until: snapshot_info.json.action.completed_at != None
   retries: 16
   delay: 60
+  delegate_to: localhost

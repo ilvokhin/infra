@@ -1,6 +1,5 @@
 - name: Power on droplet
-  local_action:
-    module: ansible.builtin.uri
+  ansible.builtin.uri:
     url: "{{ digitalocean_api_url }}/droplets/{{ droplet_id }}/actions"
     method: POST
     headers:
@@ -10,6 +9,7 @@
     status_code: 201
     body:
       type: power_on
+  delegate_to: localhost
 
 - name: Wait for host to back up
   ansible.builtin.wait_for_connection:
