@@ -1,0 +1,3 @@
+#! /usr/bin/env sh
+
+yamllint -s `find . -name '*.yml' -not -path '*.env*'`
