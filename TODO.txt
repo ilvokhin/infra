@@ -1,6 +1,5 @@
 TODO
 
-* Automate snapshots and reboots.
 * Fix quotes: use either single quotes or double quotes.
 * Enable linters: ansible-lint, yamllint.
 * Enable IPv6 for wireguard.
