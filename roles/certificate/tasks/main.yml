@@ -1,5 +1,5 @@
 - name: Request SSL certificate from Let's Encrypt
-  shell: |
+  ansible.builtin.shell: |
     # Make task independent: if nginx is already running, stop it and then
     # start back on exit.
     [ -f /var/run/nginx.pid ] && systemctl stop nginx
