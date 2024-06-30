@@ -1,6 +1,5 @@
 TODO
 
-* Fix quotes: use either single quotes or double quotes.
 * Enable linters: ansible-lint, yamllint.
 * Enable IPv6 for wireguard.
 * Setup L2TP/IPsec VPN server.

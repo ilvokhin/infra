@@ -45,8 +45,8 @@
 
 - name: Copy nginx certificate renewal hook
   ansible.builtin.copy:
-    src: 'files/hooks/{{ item }}/nginx.sh'
-    dest: '/etc/letsencrypt/renewal-hooks/{{ item }}/nginx.sh'
+    src: files/hooks/{{ item }}/nginx.sh
+    dest: /etc/letsencrypt/renewal-hooks/{{ item }}/nginx.sh
     owner: root
     group: root
     mode: u+rwx,g+r,o+r
