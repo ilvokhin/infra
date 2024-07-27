@@ -22,6 +22,13 @@ $ ansible-playbook mail.yml
 $ ansible-playbook vpn.yml
 
 
+UPGRADE
+
+Upgrade all packages on Ansible managed systems.
+
+$ ansible-playbook sysupgrade.yml
+
+
 DOTFILES
 
 There are currently no secrets stored in dotfiles, therefore it is possible to
