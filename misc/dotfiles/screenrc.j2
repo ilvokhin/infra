@@ -19,18 +19,18 @@ term xterm
 altscreen on
 
 # Always display windows captions with the following format.
-# %{Wb}: bright white letters on blue background.
+# %{255;4}: bright white letters on blue background.
 # %H: hostname of the system.
 # %c: current time HH:MM in 24h format.
-# %{wk}: white letter on black background.
+# %{7;0}: white letter on black background.
 # %-w: all window numbers and names up to the current window.
-# %{kw}: black letters on white background.
+# %{0;7}: black letters on white background.
 # [%n %t]: window number and window title.
 # %{-}: restores the attributes and colors that were set before the last change
 # was made.
 # %+w: all window numbers and names starting with the window after the current
 # one.
-caption always "%{Wb} %H - %c %{wk} %-w%{kw}[%n %t]%{-}%+w"
+caption always "%{255;4} %H - %c %{7;0} %-w%{0;7w}[%n %t]%{-}%+w"
 
 # Enable visual bell.
 vbell off

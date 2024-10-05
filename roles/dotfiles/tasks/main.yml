@@ -53,8 +53,7 @@
       ansible.builtin.template:
         src: misc/dotfiles/screenrc.j2
         dest: ~{{ user }}/.screenrc
-      # For some reason screen's exit status is 1 for --version.
-      when: has_screen.rc == 1
+      when: has_screen.rc == 0
 
 - name: Configure ssh if installed
   tags: ssh
