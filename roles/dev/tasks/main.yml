@@ -11,5 +11,6 @@
       - ctags
       - jq
       - tree
+      # Linux man pages.
       - man-pages
     state: present
