@@ -9,4 +9,7 @@
       - make
       - cmake
       - ctags
+      - jq
+      - tree
+      - man-pages
     state: present
