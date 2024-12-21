@@ -2,3 +2,4 @@
   hosts: shell
   roles:
     - { role: mutt }
+    - { role: dev }

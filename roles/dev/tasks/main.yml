@@ -1,0 +1,12 @@
+- name: Install dev packages
+  ansible.builtin.package:
+    name:
+      - gcc
+      - clang
+      - python
+      - perf
+      - autoconf
+      - make
+      - cmake
+      - ctags
+    state: present
