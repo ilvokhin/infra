@@ -1,0 +1,51 @@
+servers = (
+  {
+    address = "irc.libera.chat";
+    chatnet = "liberachat";
+    port = "6697";
+    use_tls = "yes";
+    tls_cert = "~/.irssi/certs/ilvokhin.pem";
+    tls_verify = "yes";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.oftc.net";
+    chatnet = "OFTC";
+    port = "6697";
+    use_tls = "yes";
+    tls_cert = "~/.irssi/certs/ilvokhin.pem";
+    tls_verify = "yes";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  liberachat = {
+    type = "IRC";
+    max_kicks = "1";
+    max_msgs = "4";
+    max_whois = "1";
+    sasl_mechanism = "EXTERNAL";
+    sasl_username = "ilvokhin";
+  };
+  OFTC = { type = "IRC"; max_kicks = "1"; max_msgs = "1"; max_whois = "1"; };
+};
+
+channels = (
+  { name = "#gcc"; chatnet = "liberachat"; autojoin = "Yes"; },
+  { name = "#archlinux"; chatnet = "liberachat"; autojoin = "Yes"; },
+  { name = "#kernelnewbies"; chatnet = "OFTC"; autojoin = "Yes"; }
+);
+
+settings = {
+  core = {
+    real_name = "Dmitry Ilvokhin";
+    user_name = "ilvokhin";
+    nick = "ilvokhin";
+  };
+  "fe-common/core" = {
+    autolog = "yes";
+    autolog_path = "~/.irssi/logs/$tag/$0.log";
+  };
+};
+ignores = ( { level = "JOINS PARTS QUITS"; } );

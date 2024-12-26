@@ -2,4 +2,5 @@
   hosts: shell
   roles:
     - { role: mutt }
+    - { role: irssi }
     - { role: dev }
