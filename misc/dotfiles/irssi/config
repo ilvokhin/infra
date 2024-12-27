@@ -32,9 +32,9 @@ chatnets = {
 };
 
 channels = (
-  { name = "#gcc"; chatnet = "liberachat"; autojoin = "Yes"; },
-  { name = "#archlinux"; chatnet = "liberachat"; autojoin = "Yes"; },
-  { name = "#kernelnewbies"; chatnet = "OFTC"; autojoin = "Yes"; }
+  { name = "#gcc"; chatnet = "liberachat"; autojoin = "No"; },
+  { name = "#archlinux"; chatnet = "liberachat"; autojoin = "No"; },
+  { name = "#kernelnewbies"; chatnet = "OFTC"; autojoin = "No"; }
 );
 
 settings = {
