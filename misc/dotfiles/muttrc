@@ -3,9 +3,9 @@
 set imap_user = d@ilvokhin.com
 set folder = imaps://mail.ilvokhin.com
 set spoolfile = +INBOX
-set record = +INBOX/Sent
-set postponed = +INBOX/Drafts
-set mbox = +INBOX/All
+set record = +Sent
+set postponed = +Drafts
+set mbox = +All
 
 # SMTP.
 
