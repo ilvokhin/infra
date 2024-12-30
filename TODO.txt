@@ -4,7 +4,6 @@ TODO
 * Enable IPv6 for wireguard.
 * Setup L2TP/IPsec VPN server.
 * Set correct hostname for each host.
-* Setup irssi client.
 * Migrate from DigitalOcean snapshots to avoid vendor lock.
 
 
