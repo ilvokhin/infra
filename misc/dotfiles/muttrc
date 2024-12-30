@@ -7,6 +7,9 @@ set record = +Sent
 set postponed = +Drafts
 set mbox = +All
 
+# Fetch mail from IMAP server manually.
+bind index G imap-fetch-mail
+
 # SMTP.
 
 set smtp_url = smtps://$imap_user@mail.ilvokhin.com
