@@ -1,3 +1,3 @@
 #! /bin/sh
 
-systemctl reload devecot
+systemctl reload dovecot
