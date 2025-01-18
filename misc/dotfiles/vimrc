@@ -15,6 +15,12 @@ set shiftwidth=4
 " Limit text width.
 set textwidth=79
 
+" Do not expand tabs and use eight space indentation for C files.
+autocmd FileType c setlocal noexpandtab
+autocmd FileType c setlocal tabstop=8
+autocmd FileType c setlocal softtabstop=8
+autocmd FileType c setlocal shiftwidth=8
+
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs.
 autocmd FileType make setlocal noexpandtab
 
