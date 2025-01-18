@@ -5,12 +5,9 @@ Host *
     AddKeysToAgent yes
 {% endif %}
 
-Host gate
-    Hostname gate.ilvokhin.com
-    ForwardAgent yes
-
-Host shell sun mail
+Host shell gate sun mail
     Hostname %h.ilvokhin.com
+    ForwardAgent yes
 
 # Moscow machines behind NAT.
 Host flame
