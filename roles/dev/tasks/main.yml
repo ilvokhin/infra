@@ -4,6 +4,7 @@
       - gcc
       - clang
       - python
+      - go
       - perf
       - autoconf
       - make
