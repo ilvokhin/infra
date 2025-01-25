@@ -1,3 +1,5 @@
 [user]
     name = Dmitry Ilvokhin
     email = d@ilvokhin.com
+[core]
+    excludesFile = ~/.gitignore

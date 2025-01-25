@@ -6,10 +6,13 @@
 
 - name: Configure git for Dmitry Ilvokhin
   ansible.builtin.copy:
-    src: misc/dotfiles/gitconfig
-    dest: /home/d/.gitconfig
+    src: misc/dotfiles/{{ item }}
+    dest: /home/d/.{{ item }}
     owner: d
     group: d
     mode: u+rw,g+r,o+r
+  loop:
+    - gitignore
+    - gitconfig
   tags:
     - dotfiles
