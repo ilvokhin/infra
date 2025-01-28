@@ -13,7 +13,6 @@
       - ctags
       - jq
       - tree
-      - graphviz
       # Linux man pages.
       - man-pages
     state: present
