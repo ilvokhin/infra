@@ -16,13 +16,13 @@
     - name: Copy bash_profile to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/bash_profile
-        dest: ~{{ user }}/.bash_profile
+        dest: '{{ homedir }}/.bash_profile'
       when: has_bash.rc == 0
 
     - name: Template bashrc to home directory
       ansible.builtin.template:
         src: misc/dotfiles/bashrc.j2
-        dest: ~{{ user }}/.bashrc
+        dest: '{{ homedir }}/.bashrc'
       when: has_bash.rc == 0
 
 - name: Configure vim if installed
@@ -37,7 +37,7 @@
     - name: Copy vimrc to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/vimrc
-        dest: ~{{ user }}/.vimrc
+        dest: '{{ homedir }}/.vimrc'
       when: has_vim.rc == 0
 
 - name: Configure screen if installed
@@ -52,7 +52,7 @@
     - name: Template screenrc to home directory
       ansible.builtin.template:
         src: misc/dotfiles/screenrc.j2
-        dest: ~{{ user }}/.screenrc
+        dest: '{{ homedir }}/.screenrc'
       when: has_screen.rc == 0
 
 - name: Configure ssh if installed
@@ -66,7 +66,7 @@
 
     - name: Setup ssh directory
       ansible.builtin.file:
-        path: ~{{ user }}/.ssh
+        path: '{{ user }}/.ssh'
         state: directory
         owner: '{{ user }}'
         mode: u+rw,g-rw,o-rw
@@ -75,7 +75,7 @@
     - name: Template ssh config to home directory
       ansible.builtin.template:
         src: misc/dotfiles/ssh/config.j2
-        dest: ~{{ user }}/.ssh/config
+        dest: '{{ homedir }}/.ssh/config'
         owner: '{{ user }}'
         mode: u+rw,g-rw,o-rw
       when: has_ssh.rc == 0
@@ -83,7 +83,7 @@
     - name: Copy ssh rc to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/ssh/rc
-        dest: ~{{ user }}/.ssh/rc
+        dest: '{{ homedir }}/.ssh/rc'
         owner: '{{ user }}'
         mode: u+rwx,g-rw,o-rw
       when:
@@ -102,7 +102,7 @@
     - name: Copy git config files to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/{{ item }}
-        dest: ~{{ user }}/.{{ item }}
+        dest: '{{ homedir }}/.{{ item }}'
       loop:
         - gitconfig
         - gitignore
@@ -120,7 +120,7 @@
     - name: Copy gdbinit to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/gdbinit
-        dest: ~{{ user }}/.gdbinit
+        dest: '{{ homedir }}/.gdbinit'
       when: has_gdb.rc == 0
 
 - name: Configure mutt if installed
@@ -135,7 +135,7 @@
     - name: Copy muttrc to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/muttrc
-        dest: ~{{ user }}/.muttrc
+        dest: '{{ homedir }}/.muttrc'
       when: has_mutt.rc == 0
 
 - name: Copy templates files if necessary
@@ -155,7 +155,7 @@
 
     - name: Setup templates directory
       ansible.builtin.file:
-        path: ~{{ user }}/.templates
+        path: '{{ homedir }}/.templates'
         state: directory
         owner: '{{ user }}'
       when: has_cpp.rc == 0 or has_python.rc == 0
@@ -163,11 +163,11 @@
     - name: Copy template.cpp to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.cpp
-        dest: ~{{ user }}/.templates/template.cpp
+        dest: '{{ homedir }}/.templates/template.cpp'
       when: has_cpp.rc == 0
 
     - name: Copy template.py to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.py
-        dest: ~{{ user }}/.templates/template.py
+        dest: '{{ homedir }}/.templates/template.py'
       when: has_python.rc == 0

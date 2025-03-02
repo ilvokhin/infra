@@ -1,4 +1,7 @@
 - name: Copy necessary dotfiles
   hosts: localhost
+  vars:
+    user: '{{ lookup("env", "USER") }}'
+    homedir: '{{ lookup("env", "HOME") }}'
   roles:
     - { role: dotfiles }

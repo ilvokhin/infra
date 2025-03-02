@@ -1,2 +1,3 @@
 user: d
+homedir: /home/{{ user }}
 jumphost: false
