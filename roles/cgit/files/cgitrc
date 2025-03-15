@@ -54,3 +54,8 @@ repo.desc=Code for ilvokhin.com.
 repo.url=infra.git
 repo.path=/srv/git/infra.git
 repo.desc=Ansible playbooks for personal infrastructure.
+
+# Flatbot.
+repo.url=flatbot.git
+repo.path=/srv/git/flatbot.git
+repo.desc=Telegram notification tool for rightmove.co.uk URLs.
