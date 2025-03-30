@@ -2,3 +2,4 @@ dependencies:
   - role: gdb
   - role: git
   - role: vim
+  - role: go

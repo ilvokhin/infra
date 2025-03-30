@@ -1,0 +1,27 @@
+- name: Install go
+  ansible.builtin.package:
+    name:
+      - go
+    state: present
+
+- name: Create go config directory for Dmitry Ilvokhin
+  ansible.builtin.file:
+    path: /home/d/.config/go/
+    state: directory
+    owner: d
+    group: d
+    mode: u+rw,g-wx,o-rwx
+  tags:
+    - dotfiles
+
+- name: Configure go for Dmitry Ilvokhin
+  ansible.builtin.template:
+    src: misc/dotfiles/goenv.j2
+    dest: /home/d/.config/go/env
+    owner: d
+    group: d
+    mode: u+rw,g+r,o+r
+  vars:
+    homedir: /home/d
+  tags:
+    - dotfiles

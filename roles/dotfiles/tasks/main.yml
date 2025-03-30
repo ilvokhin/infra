@@ -138,6 +138,37 @@
         dest: '{{ homedir }}/.muttrc'
       when: has_mutt.rc == 0
 
+- name: Configure go if installed
+  tags: go
+  block:
+    - name: Check if go is installed
+      ansible.builtin.command: go version
+      changed_when: false
+      failed_when: false
+      register: has_go
+
+    - name: Set go config directory for macOS
+      set_fact:
+        go_conf_dir: '{{ homedir }}/Library/Application Support/go'
+      when: has_go.rc == 0 and ansible_os_family == "Darwin"
+
+    - name: Set go config directory for Linux
+      set_fact:
+        go_conf_dir: '{{ homedir }}/.config/go'
+      when: has_go.rc == 0 and ansible_os_family != "Darwin"
+
+    - name: Create go config directory
+      ansible.builtin.file:
+        path: '{{ go_conf_dir }}'
+        state: directory
+        owner: '{{ user }}'
+
+    - name: Configure go enviroment
+      ansible.builtin.template:
+        src: misc/dotfiles/goenv.j2
+        dest: '{{ go_conf_dir }}/env'
+      when: has_go.rc == 0
+
 - name: Copy templates files if necessary
   tags: templates
   block:
