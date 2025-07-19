@@ -197,6 +197,12 @@
         dest: '{{ homedir }}/.templates/template.cpp'
       when: has_cpp.rc == 0
 
+    - name: Copy benchmark.cpp to home directory
+      ansible.builtin.copy:
+        src: misc/dotfiles/templates/benchmark.cpp
+        dest: '{{ homedir }}/.templates/benchmark.cpp'
+      when: has_cpp.rc == 0
+
     - name: Copy template.py to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.py
