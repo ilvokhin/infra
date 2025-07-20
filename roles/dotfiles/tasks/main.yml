@@ -66,7 +66,7 @@
 
     - name: Setup ssh directory
       ansible.builtin.file:
-        path: '{{ user }}/.ssh'
+        path: '{{ homedir }}/.ssh'
         state: directory
         owner: '{{ user }}'
         mode: u+rw,g-rw,o-rw
