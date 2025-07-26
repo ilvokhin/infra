@@ -65,6 +65,14 @@
     group: git
     mode: u+rwx,g+r,o+r
 
+- name: Configure git system-wide
+  ansible.builtin.copy:
+    src: files/gitconfig
+    dest: /etc/gitconfig
+    owner: git
+    group: git
+    mode: u+rwx,g+r,o+r
+
 - name: Configure git-daemon systemd service
   ansible.builtin.copy:
     src: files/git-daemon.service
