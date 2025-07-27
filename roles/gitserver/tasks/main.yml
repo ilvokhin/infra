@@ -88,29 +88,6 @@
     state: started
     daemon_reload: true
 
-- name: Setup auth directory for git
-  ansible.builtin.file:
-    path: /etc/nginx/auth/git
-    state: directory
-    owner: root
-    group: root
-    mode: u+rw,g+r,o+r
-
-# Alternative approach is to use community.general.htpasswd module to manage
-# .htpasswd file. Unfortunetly, there are couple of drawbacks:
-# * Target systems should have passlib Python library installed.
-# * Passwords might leak in the Ansible debug output, or even non-debug
-#   without no_log.
-# Seems like managing good old file is more convenient at the moment.
-
-- name: Copy git .htpasswd file to manage HTTP passwords
-  ansible.builtin.copy:
-    src: files/htpasswd
-    dest: /etc/nginx/auth/git/.htpasswd
-    owner: root
-    group: root
-    mode: u+rw,g+rw,o+r
-
 - name: Copy git.conf to handle git HTTP requests
   ansible.builtin.copy:
     src: files/git.conf
@@ -149,5 +126,3 @@
     owner: git
     group: git
     mode: u+rwx,g-rwx,o-rwx
-
-# TODO: figure out proper permissions to fix HTTP protocol push.
