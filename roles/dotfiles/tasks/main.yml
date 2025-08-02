@@ -13,16 +13,12 @@
       failed_when: false
       register: has_bash
 
-    - name: Copy bash_profile to home directory
-      ansible.builtin.copy:
-        src: misc/dotfiles/bash_profile
-        dest: '{{ homedir }}/.bash_profile'
-      when: has_bash.rc == 0
-
-    - name: Template bashrc to home directory
-      ansible.builtin.template:
-        src: misc/dotfiles/bashrc.j2
-        dest: '{{ homedir }}/.bashrc'
+    - ansible.builtin.include_role:
+        name: bashrc
+      vars:
+        bashrc_user: '{{ user }}'
+        bashrc_group: '{{ group }}'
+        bashrc_homedir: '{{ homedir }}'
       when: has_bash.rc == 0
 
 - name: Configure vim if installed

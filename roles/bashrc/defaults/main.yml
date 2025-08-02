@@ -1,0 +1,3 @@
+bashrc_user: d
+bashrc_group: d
+bashrc_homedir: /home/{{ bashrc_user }}

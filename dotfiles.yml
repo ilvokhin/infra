@@ -2,6 +2,9 @@
   hosts: localhost
   vars:
     user: '{{ lookup("env", "USER") }}'
+    # Ideally group should be something like `id -gn {{ user }}` instead.
+    group: "{{ lookup('ansible.builtin.vars', 'user') \
+        if ansible_os_family != \"Darwin\" else 'staff' }}"
     homedir: '{{ lookup("env", "HOME") }}'
   roles:
     - { role: dotfiles }

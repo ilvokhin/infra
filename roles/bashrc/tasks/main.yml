@@ -1,0 +1,19 @@
+- name: Copy bash_profile to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/bash_profile
+    dest: '{{ bashrc_homedir }}/.bash_profile'
+    owner: '{{ bashrc_user }}'
+    group: '{{ bashrc_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles
+
+- name: Template bashrc to home directory
+  ansible.builtin.template:
+    src: misc/dotfiles/bashrc.j2
+    dest: '{{ bashrc_homedir }}/.bashrc'
+    owner: '{{ bashrc_user }}'
+    group: '{{ bashrc_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles
