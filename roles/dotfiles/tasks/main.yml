@@ -83,13 +83,12 @@
       failed_when: false
       register: has_git
 
-    - name: Copy git config files to home directory
-      ansible.builtin.copy:
-        src: misc/dotfiles/{{ item }}
-        dest: '{{ homedir }}/.{{ item }}'
-      loop:
-        - gitconfig
-        - gitignore
+    - ansible.builtin.include_role:
+        name: gitconfig
+      vars:
+        gitconfig_user: '{{ user }}'
+        gitconfig_group: '{{ group }}'
+        gitconfig_homedir: '{{ homedir }}'
       when: has_git.rc == 0
 
 - name: Configure gdb if installed

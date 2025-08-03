@@ -1,0 +1,12 @@
+- name: Copy git config files to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/{{ item }}
+    dest: '{{ gitconfig_homedir }}/.{{ item }}'
+    owner: '{{ gitconfig_user }}'
+    group: '{{ gitconfig_group }}'
+    mode: u+rw,g+r,o+r
+  loop:
+    - gitconfig
+    - gitignore
+  tags:
+    - dotfiles

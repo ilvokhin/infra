@@ -5,14 +5,7 @@
     state: present
 
 - name: Configure git for Dmitry Ilvokhin
-  ansible.builtin.copy:
-    src: misc/dotfiles/{{ item }}
-    dest: /home/d/.{{ item }}
-    owner: d
-    group: d
-    mode: u+rw,g+r,o+r
-  loop:
-    - gitignore
-    - gitconfig
+  ansible.builtin.include_role:
+    name: gitconfig
   tags:
     - dotfiles

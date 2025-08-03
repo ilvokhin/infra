@@ -1,0 +1,3 @@
+gitconfig_user: d
+gitconfig_group: d
+gitconfig_homedir: /home/{{ gitconfig_user }}
