@@ -40,7 +40,7 @@ attrcolor b ".I"
 # current background color.
 defbce "on"
 
-{% if jumphost %}
+{% if screenrc_jumphost %}
 # Make ssh-agent forwarding work with screen.
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 {% endif %}

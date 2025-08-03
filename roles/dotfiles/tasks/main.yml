@@ -47,10 +47,13 @@
       failed_when: false
       register: has_screen
 
-    - name: Template screenrc to home directory
-      ansible.builtin.template:
-        src: misc/dotfiles/screenrc.j2
-        dest: '{{ homedir }}/.screenrc'
+    - ansible.builtin.include_role:
+        name: screenrc
+      vars:
+        screenrc_user: '{{ user }}'
+        screenrc_group: '{{ group }}'
+        screenrc_homedir: '{{ homedir }}'
+        screenrc_jumphost: '{{ jumphost }}'
       when: has_screen.rc == 0
 
 - name: Configure ssh if installed

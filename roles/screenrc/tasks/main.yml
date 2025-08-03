@@ -1,0 +1,9 @@
+- name: Template screenrc to home directory
+  ansible.builtin.template:
+    src: misc/dotfiles/screenrc.j2
+    dest: '{{ screenrc_homedir }}/.screenrc'
+    owner: '{{ screenrc_user }}'
+    group: '{{ screenrc_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles

@@ -1,0 +1,4 @@
+screenrc_user: d
+screenrc_group: d
+screenrc_homedir: /home/{{ screenrc_user }}
+screenrc_jumphost: '{{ jumphost }}'

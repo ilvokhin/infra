@@ -5,11 +5,7 @@
     state: present
 
 - name: Configure screen for Dmitry Ilvokhin
-  ansible.builtin.template:
-    src: misc/dotfiles/screenrc.j2
-    dest: /home/d/.screenrc
-    owner: d
-    group: d
-    mode: u+rw,g+r,o+r
+  ansible.builtin.include_role:
+    name: screenrc
   tags:
     - dotfiles
