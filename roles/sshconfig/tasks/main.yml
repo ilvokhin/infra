@@ -1,0 +1,31 @@
+- name: Setup ssh directory
+  ansible.builtin.file:
+    path: '{{ sshconfig_homedir }}/.ssh'
+    state: directory
+    owner: '{{ sshconfig_user }}'
+    group: '{{ sshconfig_group }}'
+    mode: u+rw,g-rw,o-rw
+  tags:
+    - dotfiles
+
+- name: Template ssh config to home directory
+  ansible.builtin.template:
+    src: misc/dotfiles/ssh/config.j2
+    dest: '{{ sshconfig_homedir }}/.ssh/config'
+    owner: '{{ sshconfig_user }}'
+    group: '{{ sshconfig_group }}'
+    mode: u+rw,g-rw,o-rw
+  tags:
+    - dotfiles
+
+- name: Copy ssh rc to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/ssh/rc
+    dest: '{{ sshconfig_homedir }}/.ssh/rc'
+    owner: '{{ sshconfig_user }}'
+    group: '{{ sshconfig_group }}'
+    mode: u+rwx,g-rw,o-rw
+  when:
+    - sshconfig_jumphost
+  tags:
+    - dotfiles

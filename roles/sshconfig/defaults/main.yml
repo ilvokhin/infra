@@ -1,0 +1,4 @@
+sshconfig_user: d
+sshconfig_group: d
+sshconfig_homedir: /home/{{ sshconfig_user }}
+sshconfig_jumphost: '{{ jumphost }}'

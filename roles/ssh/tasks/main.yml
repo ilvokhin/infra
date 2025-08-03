@@ -19,23 +19,7 @@
     - dotfiles
 
 - name: Configure ssh for Dmitry Ilvokhin
-  ansible.builtin.template:
-    src: misc/dotfiles/ssh/config.j2
-    dest: /home/d/.ssh/config
-    owner: d
-    mode: u+rw,g-rw,o-rw
-  when:
-    - jumphost
-  tags:
-    - dotfiles
-
-- name: Add ssh rc for Dmitry Ilvokhin
-  ansible.builtin.copy:
-    src: misc/dotfiles/ssh/rc
-    dest: /home/d/.ssh/rc
-    owner: d
-    mode: u+rwx,g-rw,o-rw
-  when:
-    - jumphost
+  ansible.builtin.include_role:
+    name: sshconfig
   tags:
     - dotfiles

@@ -65,31 +65,14 @@
       failed_when: false
       register: has_ssh
 
-    - name: Setup ssh directory
-      ansible.builtin.file:
-        path: '{{ homedir }}/.ssh'
-        state: directory
-        owner: '{{ user }}'
-        mode: u+rw,g-rw,o-rw
+    - ansible.builtin.include_role:
+        name: sshconfig
+      vars:
+        sshconfig_user: '{{ user }}'
+        sshconfig_group: '{{ group }}'
+        sshconfig_homedir: '{{ homedir }}'
+        sshconfig_jumphost: '{{ jumphost }}'
       when: has_ssh.rc == 0
-
-    - name: Template ssh config to home directory
-      ansible.builtin.template:
-        src: misc/dotfiles/ssh/config.j2
-        dest: '{{ homedir }}/.ssh/config'
-        owner: '{{ user }}'
-        mode: u+rw,g-rw,o-rw
-      when: has_ssh.rc == 0
-
-    - name: Copy ssh rc to home directory
-      ansible.builtin.copy:
-        src: misc/dotfiles/ssh/rc
-        dest: '{{ homedir }}/.ssh/rc'
-        owner: '{{ user }}'
-        mode: u+rwx,g-rw,o-rw
-      when:
-        - has_ssh.rc == 0
-        - jumphost
 
 - name: Configure git if installed
   tags: git
