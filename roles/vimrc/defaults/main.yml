@@ -1,0 +1,3 @@
+vimrc_user: d
+vimrc_group: d
+vimrc_homedir: /home/{{ vimrc_user }}

@@ -1,0 +1,9 @@
+- name: Copy vimrc to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/vimrc
+    dest: '{{ vimrc_homedir }}/.vimrc'
+    owner: '{{ vimrc_user }}'
+    group: '{{ vimrc_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles

@@ -30,10 +30,12 @@
       failed_when: false
       register: has_vim
 
-    - name: Copy vimrc to home directory
-      ansible.builtin.copy:
-        src: misc/dotfiles/vimrc
-        dest: '{{ homedir }}/.vimrc'
+    - ansible.builtin.include_role:
+        name: vimrc
+      vars:
+        vimrc_user: '{{ user }}'
+        vimrc_group: '{{ group }}'
+        vimrc_homedir: '{{ homedir }}'
       when: has_vim.rc == 0
 
 - name: Configure screen if installed
