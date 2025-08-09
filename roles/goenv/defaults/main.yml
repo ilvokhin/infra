@@ -1,0 +1,3 @@
+goenv_user: d
+goenv_group: d
+goenv_homedir: /home/{{ goenv_user }}
