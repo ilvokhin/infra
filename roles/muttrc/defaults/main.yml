@@ -1,0 +1,3 @@
+muttrc_user: d
+muttrc_group: d
+muttrc_homedir: /home/{{ muttrc_user }}

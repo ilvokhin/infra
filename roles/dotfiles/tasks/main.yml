@@ -117,10 +117,12 @@
       failed_when: false
       register: has_mutt
 
-    - name: Copy muttrc to home directory
-      ansible.builtin.copy:
-        src: misc/dotfiles/muttrc
-        dest: '{{ homedir }}/.muttrc'
+    - ansible.builtin.include_role:
+        name: muttrc
+      vars:
+        muttrc_user: '{{ user }}'
+        muttrc_group: '{{ group }}'
+        muttrc_homedir: '{{ homedir }}'
       when: has_mutt.rc == 0
 
 - name: Configure go if installed

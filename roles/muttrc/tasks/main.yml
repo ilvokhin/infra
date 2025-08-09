@@ -1,0 +1,9 @@
+- name: Copy muttrc to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/muttrc
+    dest: '{{ muttrc_homedir }}/.muttrc'
+    owner: '{{ muttrc_user }}'
+    group: '{{ muttrc_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles
