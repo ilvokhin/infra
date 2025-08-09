@@ -100,10 +100,12 @@
       failed_when: false
       register: has_gdb
 
-    - name: Copy gdbinit to home directory
-      ansible.builtin.copy:
-        src: misc/dotfiles/gdbinit
-        dest: '{{ homedir }}/.gdbinit'
+    - ansible.builtin.include_role:
+        name: gdbinit
+      vars:
+        gdbinit_user: '{{ user }}'
+        gdbinit_group: '{{ group }}'
+        gdbinit_homedir: '{{ homedir }}'
       when: has_gdb.rc == 0
 
 - name: Configure mutt if installed

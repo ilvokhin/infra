@@ -1,0 +1,3 @@
+gdbinit_user: d
+gdbinit_group: d
+gdbinit_homedir: /home/{{ gdbinit_user }}

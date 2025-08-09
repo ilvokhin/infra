@@ -1,0 +1,9 @@
+- name: Copy gdbinit to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/gdbinit
+    dest: '{{ gdbinit_homedir }}/.gdbinit'
+    owner: '{{ gdbinit_user }}'
+    group: '{{ gdbinit_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles
