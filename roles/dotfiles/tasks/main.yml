@@ -162,22 +162,33 @@
         path: '{{ dotfiles_homedir }}/.templates'
         state: directory
         owner: '{{ dotfiles_user }}'
+        group: '{{ dotfiles_group }}'
+        mode: u+rw,g+r,o+r
       when: has_cpp.rc == 0 or has_python.rc == 0
 
     - name: Copy template.cpp to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.cpp
         dest: '{{ dotfiles_homedir }}/.templates/template.cpp'
+        owner: '{{ dotfiles_user }}'
+        group: '{{ dotfiles_group }}'
+        mode: u+rw,g+r,o+r
       when: has_cpp.rc == 0
 
     - name: Copy benchmark.cpp to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/benchmark.cpp
         dest: '{{ dotfiles_homedir }}/.templates/benchmark.cpp'
+        owner: '{{ dotfiles_user }}'
+        group: '{{ dotfiles_group }}'
+        mode: u+rw,g+r,o+r
       when: has_cpp.rc == 0
 
     - name: Copy template.py to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.py
         dest: '{{ dotfiles_homedir }}/.templates/template.py'
+        owner: '{{ dotfiles_user }}'
+        group: '{{ dotfiles_group }}'
+        mode: u+rw,g+r,o+r
       when: has_python.rc == 0
