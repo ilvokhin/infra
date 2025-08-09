@@ -16,9 +16,9 @@
     - ansible.builtin.include_role:
         name: bashrc
       vars:
-        bashrc_user: '{{ user }}'
-        bashrc_group: '{{ group }}'
-        bashrc_homedir: '{{ homedir }}'
+        bashrc_user: '{{ dotfiles_user }}'
+        bashrc_group: '{{ dotfiles_group }}'
+        bashrc_homedir: '{{ dotfiles_homedir }}'
       when: has_bash.rc == 0
 
 - name: Configure vim if installed
@@ -33,9 +33,9 @@
     - ansible.builtin.include_role:
         name: vimrc
       vars:
-        vimrc_user: '{{ user }}'
-        vimrc_group: '{{ group }}'
-        vimrc_homedir: '{{ homedir }}'
+        vimrc_user: '{{ dotfiles_user }}'
+        vimrc_group: '{{ dotfiles_group }}'
+        vimrc_homedir: '{{ dotfiles_homedir }}'
       when: has_vim.rc == 0
 
 - name: Configure screen if installed
@@ -50,10 +50,10 @@
     - ansible.builtin.include_role:
         name: screenrc
       vars:
-        screenrc_user: '{{ user }}'
-        screenrc_group: '{{ group }}'
-        screenrc_homedir: '{{ homedir }}'
-        screenrc_jumphost: '{{ jumphost }}'
+        screenrc_user: '{{ dotfiles_user }}'
+        screenrc_group: '{{ dotfiles_group }}'
+        screenrc_homedir: '{{ dotfiles_homedir }}'
+        screenrc_jumphost: '{{ dotfiles_jumphost }}'
       when: has_screen.rc == 0
 
 - name: Configure ssh if installed
@@ -68,10 +68,10 @@
     - ansible.builtin.include_role:
         name: sshconfig
       vars:
-        sshconfig_user: '{{ user }}'
-        sshconfig_group: '{{ group }}'
-        sshconfig_homedir: '{{ homedir }}'
-        sshconfig_jumphost: '{{ jumphost }}'
+        sshconfig_user: '{{ dotfiles_user }}'
+        sshconfig_group: '{{ dotfiles_group }}'
+        sshconfig_homedir: '{{ dotfiles_homedir }}'
+        sshconfig_jumphost: '{{ dotfiles_jumphost }}'
       when: has_ssh.rc == 0
 
 - name: Configure git if installed
@@ -86,9 +86,9 @@
     - ansible.builtin.include_role:
         name: gitconfig
       vars:
-        gitconfig_user: '{{ user }}'
-        gitconfig_group: '{{ group }}'
-        gitconfig_homedir: '{{ homedir }}'
+        gitconfig_user: '{{ dotfiles_user }}'
+        gitconfig_group: '{{ dotfiles_group }}'
+        gitconfig_homedir: '{{ dotfiles_homedir }}'
       when: has_git.rc == 0
 
 - name: Configure gdb if installed
@@ -103,9 +103,9 @@
     - ansible.builtin.include_role:
         name: gdbinit
       vars:
-        gdbinit_user: '{{ user }}'
-        gdbinit_group: '{{ group }}'
-        gdbinit_homedir: '{{ homedir }}'
+        gdbinit_user: '{{ dotfiles_user }}'
+        gdbinit_group: '{{ dotfiles_group }}'
+        gdbinit_homedir: '{{ dotfiles_homedir }}'
       when: has_gdb.rc == 0
 
 - name: Configure mutt if installed
@@ -120,9 +120,9 @@
     - ansible.builtin.include_role:
         name: muttrc
       vars:
-        muttrc_user: '{{ user }}'
-        muttrc_group: '{{ group }}'
-        muttrc_homedir: '{{ homedir }}'
+        muttrc_user: '{{ dotfiles_user }}'
+        muttrc_group: '{{ dotfiles_group }}'
+        muttrc_homedir: '{{ dotfiles_homedir }}'
       when: has_mutt.rc == 0
 
 - name: Configure go if installed
@@ -137,9 +137,9 @@
     - ansible.builtin.include_role:
         name: goenv
       vars:
-        goenv_user: '{{ user }}'
-        goenv_group: '{{ group }}'
-        goenv_homedir: '{{ homedir }}'
+        goenv_user: '{{ dotfiles_user }}'
+        goenv_group: '{{ dotfiles_group }}'
+        goenv_homedir: '{{ dotfiles_homedir }}'
       when: has_go.rc == 0
 
 - name: Copy templates files if necessary
@@ -159,25 +159,25 @@
 
     - name: Setup templates directory
       ansible.builtin.file:
-        path: '{{ homedir }}/.templates'
+        path: '{{ dotfiles_homedir }}/.templates'
         state: directory
-        owner: '{{ user }}'
+        owner: '{{ dotfiles_user }}'
       when: has_cpp.rc == 0 or has_python.rc == 0
 
     - name: Copy template.cpp to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.cpp
-        dest: '{{ homedir }}/.templates/template.cpp'
+        dest: '{{ dotfiles_homedir }}/.templates/template.cpp'
       when: has_cpp.rc == 0
 
     - name: Copy benchmark.cpp to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/benchmark.cpp
-        dest: '{{ homedir }}/.templates/benchmark.cpp'
+        dest: '{{ dotfiles_homedir }}/.templates/benchmark.cpp'
       when: has_cpp.rc == 0
 
     - name: Copy template.py to home directory
       ansible.builtin.copy:
         src: misc/dotfiles/templates/template.py
-        dest: '{{ homedir }}/.templates/template.py'
+        dest: '{{ dotfiles_homedir }}/.templates/template.py'
       when: has_python.rc == 0

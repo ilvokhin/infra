@@ -1,4 +1,4 @@
-user: d
-group: d
-homedir: /home/{{ user }}
-jumphost: false
+dotfiles_user: d
+dotfiles_group: d
+dotfiles_homedir: /home/{{ dotfiles_user }}
+dotfiles_jumphost: false
