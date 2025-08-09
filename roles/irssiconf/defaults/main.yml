@@ -1,0 +1,3 @@
+irssiconf_user: d
+irssiconf_group: d
+irssiconf_homedir: /home/{{ irssiconf_user }}

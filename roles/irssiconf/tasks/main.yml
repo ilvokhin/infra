@@ -1,0 +1,39 @@
+- name: Setup irssi configuration directory
+  ansible.builtin.file:
+    path: '{{ irssiconf_homedir }}/.irssi'
+    state: directory
+    owner: '{{ irssiconf_user }}'
+    group: '{{ irssiconf_group }}'
+    mode: u+rw,g-wx,o-rwx
+  tags:
+    - dotfiles
+
+- name: Copy irssi configuration
+  ansible.builtin.copy:
+    src: misc/dotfiles/irssi/config
+    dest: '{{ irssiconf_homedir }}/.irssi/config'
+    owner: '{{ irssiconf_user }}'
+    group: '{{ irssiconf_group }}'
+    mode: u+rw,g-rw,o-rw
+  tags:
+    - dotfiles
+
+- name: Setup irssi certs directory
+  ansible.builtin.file:
+    path: '{{ irssiconf_homedir }}/.irssi/certs'
+    state: directory
+    owner: '{{ irssiconf_user }}'
+    group: '{{ irssiconf_group }}'
+    mode: u+rw,g-wx,o-rwx
+  tags:
+    - dotfiles
+
+- name: Copy irssi auth certificates
+  ansible.builtin.copy:
+    src: misc/dotfiles/irssi/certs/ilvokhin.pem
+    dest: '{{ irssiconf_homedir }}/.irssi/certs/ilvokhin.pem'
+    owner: '{{ irssiconf_user }}'
+    group: '{{ irssiconf_group }}'
+    mode: u+rw,g-wx,o-rwx
+  tags:
+    - dotfiles

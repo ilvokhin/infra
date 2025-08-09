@@ -4,40 +4,8 @@
       - irssi
     state: present
 
-- name: Setup irssi directory for Dmitry Ilvokhin
-  ansible.builtin.file:
-    path: /home/d/.irssi
-    state: directory
-    owner: d
-    group: d
-    mode: u+rw,g-wx,o-rwx
-  tags:
-    - dotfiles
-
 - name: Configure irssi for Dmitry Ilvokhin
-  ansible.builtin.copy:
-    src: misc/dotfiles/irssi/config
-    dest: /home/d/.irssi/config
-    owner: d
-    mode: u+rw,g-rw,o-rw
-  tags:
-    - dotfiles
-
-- name: Setup irssi certs directory for Dmitry Ilvokhin
-  ansible.builtin.file:
-    path: /home/d/.irssi/certs
-    state: directory
-    owner: d
-    group: d
-    mode: u+rw,g-wx,o-rwx
-  tags:
-    - dotfiles
-
-- name: Configure irssi for Dmitry Ilvokhin
-  ansible.builtin.copy:
-    src: misc/dotfiles/irssi/certs/ilvokhin.pem
-    dest: /home/d/.irssi/certs/ilvokhin.pem
-    owner: d
-    mode: u+rw,g-rw,o-rw
+  ansible.builtin.include_role:
+    name: irssiconf
   tags:
     - dotfiles
