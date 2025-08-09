@@ -1,12 +1,12 @@
 - name: Set go config directory for macOS
-  set_fact:
+  ansible.builtin.set_fact:
     goenv_conf_dir: '{{ goenv_homedir }}/Library/Application Support/go'
   when: ansible_os_family == "Darwin"
   tags:
     - dotfiles
 
 - name: Set go config directory for Linux
-  set_fact:
+  ansible.builtin.set_fact:
     goenv_conf_dir: '{{ goenv_homedir }}/.config/go'
   when: ansible_os_family != "Darwin"
   tags:
