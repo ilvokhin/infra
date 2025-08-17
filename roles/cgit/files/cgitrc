@@ -59,3 +59,8 @@ repo.desc=Ansible playbooks for personal infrastructure.
 repo.url=flatbot.git
 repo.path=/srv/git/flatbot.git
 repo.desc=Telegram notification tool for rightmove.co.uk URLs.
+
+# Histogram.
+repo.url=histogram.git
+repo.path=/srv/git/histogram.git
+repo.desc=CLI tool to generate text histograms.
