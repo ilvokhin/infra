@@ -16,7 +16,7 @@ PostDown = iptables -t nat -D PREROUTING -i %i -p udp --dport 5353 -j REDIRECT -
 PostDown = iptables -t nat -D PREROUTING -i %i -p tcp --syn -j REDIRECT --to-ports 9040
 PostDown = iptables -t nat -D OUTPUT -p tcp -d 10.192.0.0/10 -j REDIRECT --to-ports 9040
 
-# earth
+# silver
 [Peer]
 PublicKey = HhBhDQmGzltIGQOn+clbRIkQt7ocPAuqsUS+ytinIwU=
 AllowedIPs = 10.0.2.2/32
