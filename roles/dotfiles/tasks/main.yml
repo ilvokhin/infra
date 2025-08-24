@@ -74,6 +74,29 @@
         sshconfig_jumphost: '{{ dotfiles_jumphost }}'
       when: has_ssh.rc == 0
 
+- name: Configure wireguard if installed
+  tags: wireguard
+  block:
+    - name: Check if wireguard is installed
+      ansible.builtin.command: wg --version
+      changed_when: false
+      failed_when: false
+      register: has_wireguard
+
+    - name: Get actual hostname
+      ansible.builtin.command: hostname
+      changed_when: false
+      failed_when: false
+      register: hostname
+
+    - ansible.builtin.include_role:
+        name: wgconfig
+      vars:
+        wgconfig_user: '{{ dotfiles_user }}'
+        wgconfig_group: '{{ dotfiles_group }}'
+        wgconfig_homedir: '{{ dotfiles_homedir }}'
+      when: has_wireguard.rc == 0 and hostname.stdout == "silver"
+
 - name: Configure git if installed
   tags: git
   block:

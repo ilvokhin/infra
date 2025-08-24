@@ -1,0 +1,3 @@
+wgconfig_user: d
+wgconfig_group: d
+wgconfig_homedir: /home/{{ wgconfig_user }}

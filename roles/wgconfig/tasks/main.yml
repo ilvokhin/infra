@@ -1,0 +1,35 @@
+- name: Setup wireguard config directory
+  ansible.builtin.file:
+    path: '{{ wgconfig_homedir }}/.wireguard'
+    state: directory
+    owner: '{{ wgconfig_user }}'
+    group: '{{ wgconfig_group }}'
+    mode: u+rw,g-rw,o-rw
+  tags:
+    - dotfiles
+
+- name: Copy wireguard config files to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/wireguard/{{ item }}
+    dest: '{{ wgconfig_homedir }}/.wireguard/{{ item }}'
+    owner: '{{ wgconfig_user }}'
+    group: '{{ wgconfig_group }}'
+    mode: u+rw,g-rw,o-rw
+  loop:
+    - wgvpn0.conf
+    - wgtor0.conf
+  tags:
+    - dotfiles
+
+- name: Copy wireguard scripts to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/wireguard/{{ item }}
+    dest: '{{ wgconfig_homedir }}/.wireguard/{{ item }}'
+    owner: '{{ wgconfig_user }}'
+    group: '{{ wgconfig_group }}'
+    mode: u+rwx,g-rw,o-rw
+  loop:
+    - onion-dns-up.sh
+    - onion-dns-down.sh
+  tags:
+    - dotfiles
