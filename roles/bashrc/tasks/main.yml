@@ -17,3 +17,14 @@
     mode: u+rw,g+r,o+r
   tags:
     - dotfiles
+
+- name: Disable session save/restore mechanism
+  ansible.builtin.file:
+    path: '{{ bashrc_homedir }}/.bash_sessions_disable'
+    state: touch
+    owner: '{{ bashrc_user }}'
+    group: '{{ bashrc_group }}'
+    mode: u+rw,g+r,o+r
+  when: ansible_os_family == "Darwin"
+  tags:
+    - dotfiles
