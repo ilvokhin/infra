@@ -64,3 +64,8 @@ repo.desc=Telegram notification tool for rightmove.co.uk URLs.
 repo.url=histogram.git
 repo.path=/srv/git/histogram.git
 repo.desc=CLI tool to generate text histograms.
+
+# Misc.
+repo.url=misc.git
+repo.path=/srv/git/misc.git
+repo.desc=Miscellaneous code that is useful to have around.
