@@ -1,0 +1,9 @@
+- name: Copy makepkg.conf to home directory
+  ansible.builtin.copy:
+    src: misc/dotfiles/makepkg.conf
+    dest: '{{ makepkgconfig_homedir }}/.makepkg.conf'
+    owner: '{{ makepkgconfig_user }}'
+    group: '{{ makepkgconfig_group }}'
+    mode: u+rw,g+r,o+r
+  tags:
+    - dotfiles

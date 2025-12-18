@@ -1,0 +1,3 @@
+makepkgconfig_user: d
+makepkgconfig_group: d
+makepkgconfig_homedir: /home/{{ makepkgconfig_user }}

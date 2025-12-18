@@ -1,0 +1,11 @@
+- name: Install devtools
+  ansible.builtin.package:
+    name:
+      - devtools
+    state: present
+
+- name: Configure devtools for Dmitry Ilvokhin
+  ansible.builtin.include_role:
+    name: makepkgconfig
+  tags:
+    - dotfiles
