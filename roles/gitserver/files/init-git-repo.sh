@@ -35,6 +35,11 @@ if [ -z $repo ]; then
     exit 1
 fi
 
+if [ $USER != git ]; then
+    echo "You should run this script as git, not as $USER!" 1>&2
+    exit 1
+fi
+
 mkdir $repo
 cd $repo
 git init --bare
