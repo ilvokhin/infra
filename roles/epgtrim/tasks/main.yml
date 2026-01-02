@@ -1,0 +1,30 @@
+- name: Install epgtrim
+  ansible.builtin.package:
+    name:
+      - epgtrim
+    state: present
+
+- name: Configure epgtrim
+  ansible.builtin.copy:
+    src: files/epgtrim
+    dest: /etc/
+    owner: root
+    group: root
+    mode: u+rw,g+r,o-rw
+
+- name: Configure epgtrim service
+  ansible.builtin.copy:
+    src: files/{{ item }}
+    dest: /usr/lib/systemd/system/{{ item }}
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  loop:
+    - epgtrim.service
+    - epgtrim.timer
+
+- name: Enable epgtrim systemd timer
+  ansible.builtin.service:
+    name: epgtrim.timer
+    enabled: true
+    state: started

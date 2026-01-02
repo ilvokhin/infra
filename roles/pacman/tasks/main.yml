@@ -1,0 +1,22 @@
+- name: Configure misc pacman repository
+  ansible.builtin.copy:
+    src: files/misc
+    dest: /etc/pacman.d
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+- name: Add misc repository to pacman.conf
+  ansible.builtin.lineinfile:
+    dest: /etc/pacman.conf
+    state: present
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  loop:
+    - regexp: '^[misc]'
+      line: '[misc]'
+    - regexp: '^Include = /etc/pacman.d/misc'
+      line: 'Include = /etc/pacman.d/misc'

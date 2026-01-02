@@ -1,0 +1,3 @@
+Server = https://packages.ilvokhin.com/$arch
+# TODO: sign all packages and remove this line.
+SigLevel = Optional

@@ -1,0 +1,4 @@
+- name: Setup machines to run epgtrim
+  hosts: web
+  roles:
+    - { role: epgtrim }

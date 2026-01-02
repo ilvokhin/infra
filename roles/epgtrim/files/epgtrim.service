@@ -1,0 +1,15 @@
+[Unit]
+Description=Run epgtrim once
+After=network.target
+
+[Service]
+User=http
+Group=http
+Type=oneshot
+WorkingDirectory=/srv/http/ilvokhin.com
+EnvironmentFile=/etc/epgtrim
+ExecStart=/usr/bin/epgtrim -output xmltv.xml ${URL}
+ExecStart=/usr/bin/gzip --force xmltv.xml
+
+[Install]
+WantedBy=default.target
