@@ -5,6 +5,7 @@
     - { role: home }
     - { role: ip }
     - { role: blog }
+    - { role: packages }
     # Git
     - { role: gitserver }
     - { role: cgit }

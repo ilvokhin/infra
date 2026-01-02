@@ -1,0 +1,8 @@
+dependencies:
+  - role: certificate
+    vars:
+      domains:
+        - packages.ilvokhin.com
+        - www.packages.ilvokhin.com
+  - role: nginx
+  - role: rsync

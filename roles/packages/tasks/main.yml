@@ -1,0 +1,38 @@
+- name: Create /srv/http/packages.ilvokhin.com directory
+  ansible.builtin.file:
+    path: /srv/http/packages.ilvokhin.com
+    state: directory
+    owner: http
+    group: http
+    mode: u+rw,g+rw,o+r
+
+- name: Create arch sub-directories
+  ansible.builtin.file:
+    path: /srv/http/packages.ilvokhin.com/{{ item }}
+    state: directory
+    owner: http
+    group: http
+    mode: u+rw,g+rw,o+r
+  loop:
+    - x86_64
+
+- name: Configure nginx for packages.ilvokhin.com
+  ansible.builtin.copy:
+    src: files/packages.ilvokhin.com
+    dest: /etc/nginx/sites-available
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload nginx
+
+- name: Enable packages.ilvokhin.com site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/packages.ilvokhin.com
+    dest: /etc/nginx/sites-enabled/packages.ilvokhin.com
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+    state: link
+  notify:
+    - Reload nginx
