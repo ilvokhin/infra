@@ -73,4 +73,4 @@ repo.desc=Miscellaneous code that is useful to have around.
 # Packages.
 repo.url=packages.git
 repo.path=/srv/git/packages.git
-repo.desc=Confuguration files for Arch Linux packages.
+repo.desc=Configuration files for Arch Linux packages.
