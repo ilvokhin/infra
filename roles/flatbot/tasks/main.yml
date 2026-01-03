@@ -41,8 +41,6 @@
     owner: root
     group: root
     mode: u+rw,g+r,o+r
-  notify:
-    - Reload units
   loop:
     - files/flatbot.service
     - files/flatbot.timer
@@ -52,3 +50,4 @@
     name: flatbot.timer
     enabled: true
     state: started
+    daemon_reload: true
