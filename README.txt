@@ -41,6 +41,15 @@ $ ANSIBLE_CONFIG=/tmp/ansible.cfg \
     --extra-vars "user=`whoami`"
 
 
+MISC
+
+Deploymend and configuration of miscelanious software. These playbooks depend
+on packages from packages.ilvokhin.com repository. Because of that they can not
+be the part of the master.yml playbook.
+
+$ ansible-playbook epgtrim.yml
+
+
 ROTATE VAULT PASSWORD
 
 $ bin/rotate-vault-password
