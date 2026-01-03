@@ -1,0 +1,4 @@
+- name: Setup machines to run flatbot
+  hosts: shell
+  roles:
+    - { role: flatbot }

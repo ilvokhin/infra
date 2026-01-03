@@ -1,0 +1,5 @@
+GREENWICH=https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&propertyTypes=detached,semi-detached,terraced&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&tenureTypes=FREEHOLD,SHARE_OF_FREEHOLD&maxPrice=900000&radius=0.5&locationIdentifier=STATION^6122&maxDaysSinceAdded=7
+CLERKENWELL=https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&maxPrice=900000&radius=0.5&locationIdentifier=STATION^3431&maxDaysSinceAdded=7
+HAMPSTEAD=https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&maxPrice=900000&locationIdentifier=REGION^87509&transactionType=BUY&maxDaysSinceAdded=7
+EAST_FINCHLEY=https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&maxPrice=900000&locationIdentifier=REGION^70375&transactionType=BUY&maxDaysSinceAdded=7
+HIGHGATE=https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&maxPrice=900000&locationIdentifier=REGION^70315&transactionType=BUY&maxDaysSinceAdded=7

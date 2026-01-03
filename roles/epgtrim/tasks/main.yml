@@ -14,14 +14,14 @@
 
 - name: Configure epgtrim service
   ansible.builtin.copy:
-    src: files/{{ item }}
-    dest: /usr/lib/systemd/system/{{ item }}
+    src: '{{ item }}'
+    dest: /usr/lib/systemd/system
     owner: root
     group: root
     mode: u+rw,g+r,o+r
   loop:
-    - epgtrim.service
-    - epgtrim.timer
+    - files/epgtrim.service
+    - files/epgtrim.timer
 
 - name: Enable epgtrim systemd timer
   ansible.builtin.service:

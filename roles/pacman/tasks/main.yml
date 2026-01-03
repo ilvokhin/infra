@@ -15,8 +15,16 @@
     owner: root
     group: root
     mode: u+rw,g+r,o+r
+  notify:
+    - Update packages db
   loop:
     - regexp: '^[misc]'
       line: '[misc]'
     - regexp: '^Include = /etc/pacman.d/misc'
       line: 'Include = /etc/pacman.d/misc'
+
+# Usually, handlers run after all tasks are completed, but it doesn't work for
+# this case, because we are going to install package from misc repository, so
+# we need to have package db up to date.
+- name: Force packages db update
+  ansible.builtin.meta: flush_handlers

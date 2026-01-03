@@ -1,0 +1,3 @@
+- name: Update packages db
+  community.general.pacman:
+    update_cache: true

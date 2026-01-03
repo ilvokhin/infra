@@ -1,0 +1,54 @@
+- name: Install flatbot
+  ansible.builtin.package:
+    name:
+      - flatbot
+    state: present
+
+- name: Create flatbot directories
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    owner: root
+    group: root
+    mode: u+rwx,g+rx,o+rx
+  loop:
+    - /etc/flatbot
+    - /var/lib/flatbot
+
+- name: Configure flatbot
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: /etc/flatbot
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  loop:
+    - files/config
+    - files/urls
+
+- name: Copy flatbot token config
+  ansible.builtin.copy:
+    src: files/token
+    dest: /etc/flatbot
+    owner: root
+    group: root
+    mode: u+rw,g-r,o-r
+
+- name: Configure flatbot service
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: /usr/lib/systemd/system
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Reload units
+  loop:
+    - files/flatbot.service
+    - files/flatbot.timer
+
+- name: Enable flatbot systemd timer
+  ansible.builtin.service:
+    name: flatbot.timer
+    enabled: true
+    state: started

@@ -1,0 +1,8 @@
+[Unit]
+Description=Run flatbot everyday
+
+[Timer]
+OnCalendar=*-*-* 19:00:00
+
+[Install]
+WantedBy=timers.target
