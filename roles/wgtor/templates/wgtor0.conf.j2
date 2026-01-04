@@ -6,10 +6,10 @@ ListenPort = 51822
 # See for source of iptables rules.
 # https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy
 
-PostUp = iptables -t nat -A PREROUTING -i %i -p udp --dport 53 -j REDIRECT --to-ports 5353
-PostUp = iptables -t nat -A PREROUTING -i %i -p udp --dport 5353 -j REDIRECT --to-ports 5353
-PostUp = iptables -t nat -A PREROUTING -i %i -p tcp --syn -j REDIRECT --to-ports 9040
-PostUp = iptables -t nat -A OUTPUT -p tcp -d 10.192.0.0/10 -j REDIRECT --to-ports 9040
+PostUp = iptables --wait -t nat -A PREROUTING -i %i -p udp --dport 53 -j REDIRECT --to-ports 5353
+PostUp = iptables --wait -t nat -A PREROUTING -i %i -p udp --dport 5353 -j REDIRECT --to-ports 5353
+PostUp = iptables --wait -t nat -A PREROUTING -i %i -p tcp --syn -j REDIRECT --to-ports 9040
+PostUp = iptables --wait -t nat -A OUTPUT -p tcp -d 10.192.0.0/10 -j REDIRECT --to-ports 9040
 
 PostDown = iptables -t nat -D PREROUTING -i %i -p udp --dport 53 -j REDIRECT --to-ports 5353
 PostDown = iptables -t nat -D PREROUTING -i %i -p udp --dport 5353 -j REDIRECT --to-ports 5353
