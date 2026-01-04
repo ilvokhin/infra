@@ -46,7 +46,7 @@
     - files/flatbot.timer
 
 - name: Enable flatbot systemd timer
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: flatbot.timer
     enabled: true
     state: started

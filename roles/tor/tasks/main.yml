@@ -43,7 +43,7 @@
     mode: u+rw,g+r,o+r
 
 - name: Enable tor systemd service
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: tor
     enabled: true
     state: started

@@ -24,7 +24,7 @@
     - files/epgtrim.timer
 
 - name: Enable epgtrim systemd timer
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: epgtrim.timer
     enabled: true
     state: started
