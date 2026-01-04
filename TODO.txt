@@ -1,5 +1,6 @@
 TODO
 
+* Check errors for DigitalOcean snapshot creation.
 * Enable linters: ansible-lint, yamllint.
 * Enable IPv6 for wireguard.
 * Setup L2TP/IPsec VPN server.
