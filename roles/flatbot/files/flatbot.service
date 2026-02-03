@@ -7,7 +7,7 @@ Type=oneshot
 EnvironmentFile=/etc/flatbot/token
 EnvironmentFile=/etc/flatbot/config
 EnvironmentFile=/etc/flatbot/urls
-ExecStart=/usr/bin/flatbot -state ${FLATBOT_STATE} -once ${GREENWICH} ${CLERKENWELL} ${HAMPSTEAD} ${EAST_FINCHLEY} ${HIGHGATE}
+ExecStart=/usr/bin/flatbot -state ${FLATBOT_STATE} -once ${GREENWICH} ${CLERKENWELL}
 
 [Install]
 WantedBy=default.target
