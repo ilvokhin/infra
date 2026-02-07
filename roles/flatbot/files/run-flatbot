@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+# Simple wrapper script to read URLs from configuration file.
+
+if [ "$#" -ne 2 ]; then
+    echo "Illegal number of parameters" 1>&2
+    exit 1
+fi
+
+state=$1
+urlsfile=$2
+
+urls=""
+
+while IFS= read -r line;
+do
+    case "$line" in
+        ""|\#*)
+            continue
+            ;;
+        *)
+            urls="${urls} ${line}"
+            ;;
+    esac
+done < $urlsfile
+
+exec /usr/bin/flatbot -state $state -once ${urls}

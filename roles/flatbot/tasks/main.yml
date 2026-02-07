@@ -34,6 +34,14 @@
     group: root
     mode: u+rw,g-r,o-r
 
+- name: Copy flatbot run wrapper
+  ansible.builtin.copy:
+    src: files/run-flatbot
+    dest: /usr/local/bin/run-flatbot
+    owner: root
+    group: root
+    mode: u+rwx,g+r,o+r
+
 - name: Configure flatbot service
   ansible.builtin.copy:
     src: '{{ item }}'
