@@ -1,2 +1,3 @@
 FLATBOT_TELEGRAM_CHAT_ID=-1001856540467
 FLATBOT_STATE=/var/lib/flatbot/state.json
+FLATBOT_URLS=/etc/flatbot/urls
