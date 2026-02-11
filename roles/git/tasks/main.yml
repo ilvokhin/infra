@@ -4,6 +4,13 @@
       - git
     state: present
 
+- name: Install git send mail dependencies
+  ansible.builtin.package:
+    name:
+      - perl-authen-sasl
+      - perl-io-socket-ssl
+    state: present
+
 - name: Configure git for Dmitry Ilvokhin
   ansible.builtin.include_role:
     name: gitconfig

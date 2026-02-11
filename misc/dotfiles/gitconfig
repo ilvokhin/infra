@@ -3,3 +3,8 @@
     email = d@ilvokhin.com
 [core]
     excludesFile = ~/.gitignore
+[sendemail]
+	smtpserver = mail.ilvokhin.com
+	smtpuser = d@ilvokhin.com
+	smtpencryption = ssl
+	smtpserverport = 465
