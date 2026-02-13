@@ -19,9 +19,9 @@ do
             continue
             ;;
         *)
-            urls="${urls} ${line}"
+            urls="$urls $line"
             ;;
     esac
 done < $urlsfile
 
-exec /usr/bin/flatbot -state $state -once ${urls}
+exec /usr/bin/flatbot -state $state -once $urls
