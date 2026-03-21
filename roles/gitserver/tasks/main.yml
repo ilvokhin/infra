@@ -73,10 +73,18 @@
     group: git
     mode: u+rwx,g+r,o+r
 
+- name: Setup directory for git-daemon systemd override
+  ansible.builtin.file:
+    path: /etc/systemd/system/git-daemon@.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
 - name: Configure git-daemon systemd service
   ansible.builtin.copy:
-    src: files/git-daemon.service
-    dest: /usr/lib/systemd/system/git-daemon@.service
+    src: files/override.conf
+    dest: /etc/systemd/system/git-daemon@.service.d
     owner: root
     group: root
     mode: u+rw,g+r,o+r
