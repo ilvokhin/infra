@@ -19,28 +19,9 @@
     - /etc/letsencrypt/renewal-hooks/post
     - /etc/letsencrypt/renewal-hooks/pre
 
-- name: Configure certbot systemd service
-  ansible.builtin.copy:
-    src: files/certbot.service
-    dest: /usr/lib/systemd/system
-    owner: root
-    group: root
-    mode: u+rw,g+r,o+r
-
-- name: Configure certbot systemd timer
-  ansible.builtin.copy:
-    src: files/certbot.timer
-    dest: /usr/lib/systemd/system
-    owner: root
-    group: root
-    mode: u+rw,g+r,o+r
-
 - name: Enable certbot systemd timer
-  # `ansible.builtin.systemd_service` used here intentionally instead of
-  # `ansible.builtin.service` to issue `systemctl daemon-reload` in case of
-  # changes in Ansible managed unit file.
-  ansible.builtin.systemd_service:
-    name: certbot.timer
+  ansible.builtin.service:
+    name: certbot-renew.timer
     enabled: true
     state: started
     daemon_reload: true
