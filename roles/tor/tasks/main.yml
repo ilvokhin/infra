@@ -34,10 +34,18 @@
   notify:
     - Reload tor
 
+- name: Setup directory for tor systemd override
+  ansible.builtin.file:
+    path: /etc/systemd/system/tor.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
 - name: Configure tor systemd service
   ansible.builtin.copy:
-    src: files/tor.service
-    dest: /usr/lib/systemd/system/tor.service
+    src: files/override.conf
+    dest: /etc/systemd/system/tor.service.d
     owner: root
     group: root
     mode: u+rw,g+r,o+r
