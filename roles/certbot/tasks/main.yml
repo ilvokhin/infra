@@ -24,4 +24,3 @@
     name: certbot-renew.timer
     enabled: true
     state: started
-    daemon_reload: true
