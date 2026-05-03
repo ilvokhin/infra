@@ -8,6 +8,8 @@
       - autoconf
       - make
       - cmake
+      - benchmark
+      - gtest
       - ninja
       - ctags
       - jq
