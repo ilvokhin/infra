@@ -4,3 +4,4 @@
     - { role: mutt }
     - { role: irssi }
     - { role: dev }
+    - { role: lkml }

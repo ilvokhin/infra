@@ -1,0 +1,11 @@
+- name: Install b4
+  ansible.builtin.package:
+    name:
+      - b4
+    state: present
+
+- name: Install lei
+  ansible.builtin.package:
+    name:
+      - lei
+    state: present
