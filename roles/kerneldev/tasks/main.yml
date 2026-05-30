@@ -4,4 +4,5 @@
       - flex
       - bison
       - bc
+      - virtme-ng
     state: present
