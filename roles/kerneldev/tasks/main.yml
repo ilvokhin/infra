@@ -1,0 +1,7 @@
+- name: Install kernel dev packages
+  ansible.builtin.package:
+    name:
+      - flex
+      - bison
+      - bc
+    state: present
