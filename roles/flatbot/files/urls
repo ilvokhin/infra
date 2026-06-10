@@ -1,5 +1,8 @@
-# Greenwich
+# Maze Hill (Buy)
 https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&propertyTypes=detached,semi-detached,terraced&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&tenureTypes=FREEHOLD,SHARE_OF_FREEHOLD&maxPrice=900000&radius=0.5&locationIdentifier=STATION^6122&maxDaysSinceAdded=7
+
+# Maze Hill (Rent)
+https://www.rightmove.co.uk/property-to-rent/find.html?searchLocation=Maze+Hill+Station&useLocationIdentifier=true&locationIdentifier=STATION^6122&maxDaysSinceAdded=7&minBedrooms=2&minPrice=2000&propertyTypes=detached,semi-detached,terraced&radius=0.0
 
 # Clerkenwell
 https://www.rightmove.co.uk/property-for-sale/find.html?minBedrooms=2&sortType=2&areaSizeUnit=sqft&channel=BUY&index=0&maxPrice=900000&radius=0.5&locationIdentifier=STATION^3431&maxDaysSinceAdded=7
