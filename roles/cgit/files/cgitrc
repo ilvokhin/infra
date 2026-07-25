@@ -74,3 +74,9 @@ repo.desc=Miscellaneous code that is useful to have around.
 repo.url=packages.git
 repo.path=/srv/git/packages.git
 repo.desc=Configuration files for Arch Linux packages.
+
+# Linux.
+repo.url=linux.git
+repo.path=/srv/git/linux.git
+repo.desc=Linux kernel source tree.
+repo.section=Mirrors
