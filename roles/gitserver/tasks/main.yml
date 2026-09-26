@@ -27,7 +27,7 @@
     key: "{{ lookup('file', item) }}"
     key_options: no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
   with_fileglob:
-    - misc/pubkeys/*.pub
+    - misc/pubkeys/d/*.pub
 
 # Private key is required to mirror repositories to GitHub.
 - name: Copy private key for Git

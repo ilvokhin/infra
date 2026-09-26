@@ -14,7 +14,7 @@
     state: present
     key: "{{ lookup('file', item) }}"
   with_fileglob:
-    - misc/pubkeys/*.pub
+    - misc/pubkeys/d/*.pub
   tags:
     - dotfiles
 
