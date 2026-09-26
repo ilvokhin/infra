@@ -23,3 +23,25 @@
     name: sshconfig
   tags:
     - dotfiles
+
+- name: Setup SSH directory for Anastasiia Semenova
+  ansible.builtin.file:
+    path: /home/a/.ssh
+    state: directory
+    owner: a
+    group: a
+    mode: u+rw,g-wx,o-rwx
+  when: inventory_hostname in groups['home']
+  tags:
+    - dotfiles
+
+- name: Update authorized_keys for Anastasiia Semenova
+  ansible.posix.authorized_key:
+    user: a
+    state: present
+    key: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - misc/pubkeys/a/*.pub
+  when: inventory_hostname in groups['home']
+  tags:
+    - dotfiles

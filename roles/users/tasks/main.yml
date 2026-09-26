@@ -14,3 +14,9 @@
       # Group http required to deploy websites with rsync under personal
       # username.
       - http
+
+- name: Create user for Anastasiia Semenova
+  ansible.builtin.user:
+    name: a
+    home: /home/a
+  when: inventory_hostname in groups['home']
