@@ -1,0 +1,5 @@
+- name: Setup dev machines
+  hosts: dev
+  roles:
+    - { role: dev }
+    - { role: kerneldev }

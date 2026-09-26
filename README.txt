@@ -21,6 +21,7 @@ $ ansible-playbook shell.yml
 $ ansible-playbook web.yml
 $ ansible-playbook mail.yml
 $ ansible-playbook vpn.yml
+$ ansible-playbook dev.yml
 
 
 UPGRADE
