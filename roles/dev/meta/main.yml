@@ -4,4 +4,4 @@ dependencies:
   - role: vim
   - role: go
   - role: devtools
-  - role: debuginfod
+  - role: perf

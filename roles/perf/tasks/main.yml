@@ -1,0 +1,15 @@
+- name: Install perf
+  ansible.builtin.package:
+    name:
+      - perf
+    state: present
+
+- name: Configure perf event paranoid
+  ansible.builtin.copy:
+    src: files/99-perf-event-paranoid.conf
+    dest: /etc/sysctl.d/99-perf-event-paranoid.conf
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - Restart systemd-sysctl
