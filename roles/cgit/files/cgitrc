@@ -74,3 +74,8 @@ repo.desc=Miscellaneous code that is useful to have around.
 repo.url=packages.git
 repo.path=/srv/git/packages.git
 repo.desc=Configuration files for Arch Linux packages.
+
+# Benchmarks.
+repo.url=benchmarks.git
+repo.path=/srv/git/benchmarks.git
+repo.desc=Code for various micro benchmarks.
