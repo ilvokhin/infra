@@ -5,6 +5,7 @@
       - clang
       - python
       - perf
+      - debuginfod
       - autoconf
       - make
       - cmake
