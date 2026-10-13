@@ -1,3 +1,10 @@
+- name: Update home machines
+  hosts: home
+  serial: 1
+  roles:
+    - { role: sysupgrade }
+    - { role: reboot }
+
 - name: Update DigitalOcean machines
   hosts: digitalocean
   serial: 1
