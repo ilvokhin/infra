@@ -3,6 +3,7 @@
     name:
       - gcc
       - clang
+      - lld
       - python
       - autoconf
       - make
