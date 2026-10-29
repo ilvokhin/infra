@@ -79,3 +79,10 @@ repo.desc=Configuration files for Arch Linux packages.
 repo.url=benchmarks.git
 repo.path=/srv/git/benchmarks.git
 repo.desc=Code for various micro benchmarks.
+
+# Linux.
+repo.url=linux.git
+repo.path=/srv/git/linux.git
+repo.desc=Linux kernel source tree.
+repo.hide=1
+repo.section=Mirrors
