@@ -40,20 +40,15 @@ virtual-root=/
 # List of repositories. This is explicit list instead of scan-path to allow
 # private repositories.
 
+# Benchmarks.
+repo.url=benchmarks.git
+repo.path=/srv/git/benchmarks.git
+repo.desc=Code for various micro benchmarks.
+
 # Blog.
 repo.url=blog.git
 repo.path=/srv/git/blog.git
 repo.desc=Code and content for blog.ilvokhin.com.
-
-# Home.
-repo.url=home.git
-repo.path=/srv/git/home.git
-repo.desc=Code for ilvokhin.com.
-
-# Infra.
-repo.url=infra.git
-repo.path=/srv/git/infra.git
-repo.desc=Ansible playbooks for personal infrastructure.
 
 # Flatbot.
 repo.url=flatbot.git
@@ -65,6 +60,16 @@ repo.url=histogram.git
 repo.path=/srv/git/histogram.git
 repo.desc=CLI tool to generate text histograms.
 
+# Home.
+repo.url=home.git
+repo.path=/srv/git/home.git
+repo.desc=Code for ilvokhin.com.
+
+# Infra.
+repo.url=infra.git
+repo.path=/srv/git/infra.git
+repo.desc=Ansible playbooks for personal infrastructure.
+
 # Misc.
 repo.url=misc.git
 repo.path=/srv/git/misc.git
@@ -74,11 +79,6 @@ repo.desc=Miscellaneous code that is useful to have around.
 repo.url=packages.git
 repo.path=/srv/git/packages.git
 repo.desc=Configuration files for Arch Linux packages.
-
-# Benchmarks.
-repo.url=benchmarks.git
-repo.path=/srv/git/benchmarks.git
-repo.desc=Code for various micro benchmarks.
 
 # Linux.
 repo.url=linux.git
