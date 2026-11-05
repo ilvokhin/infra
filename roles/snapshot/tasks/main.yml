@@ -29,3 +29,29 @@
   retries: 16
   delay: 60
   delegate_to: localhost
+
+- name: List available droplet snapshots
+  ansible.builtin.uri:
+    url: "{{ digitalocean_api_url }}/snapshots?resource_type=droplet"
+    method: GET
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer {{ digitalocean_api_token }}
+    body_format: json
+    status_code: 200
+  register: snapshots
+  delegate_to: localhost
+
+- name: Remove past droplet snapshots
+  ansible.builtin.uri:
+    url: "{{ digitalocean_api_url }}/snapshots/{{ item.id }}"
+    method: DELETE
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer {{ digitalocean_api_token }}
+    body_format: json
+    status_code: 204
+  delegate_to: localhost
+  with_items: "{{ (snapshots.json.snapshots |\
+    selectattr('name', 'match', inventory_hostname_short) |\
+    sort(attribute='created_at'))[:-1:] }}"
