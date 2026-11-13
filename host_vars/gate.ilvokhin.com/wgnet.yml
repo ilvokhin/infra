@@ -1,0 +1,7 @@
+wgnet_ip: 10.0.0.1
+
+# Reserved for flame.
+# wgnet_ip: 10.0.0.2
+
+# Reserved for water.
+# wgnet_ip: 10.0.0.3
