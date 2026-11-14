@@ -1,0 +1,44 @@
+[NetDev]
+Name=wgvpn0
+Kind=wireguard
+Description=WireGuard tunnel wgvpn0
+
+[WireGuard]
+ListenPort=51821
+PrivateKey={{ wireguard_private_key }}
+RouteTable=main
+
+# silver
+[WireGuardPeer]
+PublicKey=HhBhDQmGzltIGQOn+clbRIkQt7ocPAuqsUS+ytinIwU=
+AllowedIPs=10.0.1.2/32
+
+# evgeny
+[WireGuardPeer]
+PublicKey=HF37v8yFI4bsbEfyCA7zIzUcoOMqRBFfU8GageE8LQQ=
+AllowedIPs=10.0.1.3/32
+
+# irine
+[WireGuardPeer]
+PublicKey=d/sd0Z3ynpZxDbihzaXEpepLNSNfWFuKNSurAC1Y9V0=
+AllowedIPs=10.0.1.4/32
+
+# night
+[WireGuardPeer]
+PublicKey=kEvIEmUvjv12uWdwKpU89Y8yiWsVKLmoZOeKVVqDEhk=
+AllowedIPs=10.0.1.5/32
+
+# natalia
+[WireGuardPeer]
+PublicKey=YpVI+MRoivY3HvqtJU1tZth61jjKl1Vg+7WSs7+vmRc=
+AllowedIPs=10.0.1.6/32
+
+# vitaly
+[WireGuardPeer]
+PublicKey=6DMNcDWXZw6VxEjbxWnSeDPz1FEju1lmPrMYweSDygE=
+AllowedIPs=10.0.1.7/32
+
+# nastya
+[WireGuardPeer]
+PublicKey=jZYCWdpKTrQ8LvM0IhGGH35dERGXZEzcq9Sa3EJ9txk=
+AllowedIPs=10.0.1.8/32

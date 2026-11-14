@@ -1,11 +1,20 @@
-- name: Configure wireguard for wgvpn
+- name: Configure wgvpn0 netdev
   ansible.builtin.template:
-    src: templates/wgvpn0.conf.j2
-    dest: /etc/wireguard/wgvpn0.conf
+    src: templates/99-wgvpn0.netdev.j2
+    dest: /etc/systemd/network/99-wgvpn0.netdev
     owner: root
-    group: root
-    mode: u+rw,g-rw,o-rw
-  notify: Restart wgvpn
+    group: systemd-network
+    mode: u+rw,g+r,o-rw
+  notify: Reload systemd-networkd
+
+- name: Configure wgvpn0 network
+  ansible.builtin.copy:
+    src: files/99-wgvpn0.network
+    dest: /etc/systemd/network/99-wgvpn0.network
+    owner: root
+    group: systemd-network
+    mode: u+rw,g+r,o-rw
+  notify: Reload systemd-networkd
 
 - name: Setup systemd-resolved drop-in config directory
   ansible.builtin.file:
@@ -15,7 +24,7 @@
     group: root
     mode: u+rw,g+r,o+r
 
-- name: Configure systemd-resolved for wgvpn
+- name: Configure systemd-resolved for wgvpn0
   ansible.builtin.copy:
     src: files/wgvpn0.conf
     dest: /etc/systemd/resolved.conf.d/wgvpn0.conf
@@ -23,9 +32,3 @@
     group: root
     mode: u+rw,g+r,o+r
   notify: Restart systemd-resolved
-
-- name: Enable wireguard service for wgvpn
-  ansible.builtin.service:
-    name: wg-quick@wgvpn0
-    enabled: true
-    state: started

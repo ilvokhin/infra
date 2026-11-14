@@ -1,0 +1,5 @@
+- name: Enable systemd-networkd service
+  ansible.builtin.service:
+    name: systemd-networkd
+    enabled: true
+    state: started
