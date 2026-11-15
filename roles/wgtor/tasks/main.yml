@@ -1,4 +1,12 @@
-- name: Configure wireguard for wgtor
+- name: Configure nftables for wgtor0
+  ansible.builtin.copy:
+    src: files/nftables.conf
+    dest: /etc/nftables-wgtor.conf
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+
+- name: Configure wireguard for wgtor0
   ansible.builtin.template:
     src: templates/wgtor0.conf.j2
     dest: /etc/wireguard/wgtor0.conf
