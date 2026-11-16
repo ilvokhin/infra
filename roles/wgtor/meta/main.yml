@@ -1,4 +1,5 @@
 dependencies:
   - role: netfwd
+  - role: networkd
   - role: nftables
   - role: wireguard

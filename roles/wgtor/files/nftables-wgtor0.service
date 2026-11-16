@@ -1,0 +1,21 @@
+[Unit]
+Description=Netfilter Tables for wgtor0
+Documentation=man:nft(8)
+
+BindsTo=sys-subsystem-net-devices-wgtor0.device
+After=sys-subsystem-net-devices-wgtor0.device
+# These options make it work properly with nftables.service, since it flushes
+# all the rules on reload or restart. See [1] for a more detailed explanation.
+# [1]: https://lethedata.com/blog/networkd-nftables-netdev-handling.html
+PartOf=nftables.service
+ReloadPropagatedFrom=nftables.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/nft -f /etc/nftables-wgtor0.conf
+ExecReload=/usr/bin/nft -f /etc/nftables-wgtor0.conf
+ExecStop=/usr/bin/nft delete table ip wgtor
+
+[Install]
+WantedBy=sys-subsystem-net-devices-wgtor0.device
