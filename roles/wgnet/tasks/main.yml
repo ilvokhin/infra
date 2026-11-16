@@ -1,16 +1,17 @@
-- name: Configure wireguard for wgnet
+- name: Configure wgnet0 netdev
   ansible.builtin.template:
-    src: templates/wgnet0.conf.j2
-    dest: /etc/wireguard/wgnet0.conf
+    src: templates/99-wgnet0.netdev.j2
+    dest: /etc/systemd/network/99-wgnet0.netdev
     owner: root
-    group: root
-    # Config containes private key for this host, so permissions are
-    # restricted.
-    mode: u+rw,g-rw,o-rw
-  notify: Reload wgnet
+    group: systemd-network
+    mode: u+rw,g+r,o-rw
+  notify: Reload systemd-networkd
 
-- name: Enable wireguard service for wgnet
-  ansible.builtin.service:
-    name: wg-quick@wgnet0
-    enabled: true
-    state: started
+- name: Configure wgnet0 network
+  ansible.builtin.copy:
+    src: files/99-wgnet0.network
+    dest: /etc/systemd/network/99-wgnet0.network
+    owner: root
+    group: systemd-network
+    mode: u+rw,g+r,o+r
+  notify: Reload systemd-networkd

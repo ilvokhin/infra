@@ -13,7 +13,7 @@
     dest: /etc/systemd/network/99-wgvpn0.network
     owner: root
     group: systemd-network
-    mode: u+rw,g+r,o-rw
+    mode: u+rw,g+r,o+r
   notify: Reload systemd-networkd
 
 - name: Setup systemd-resolved drop-in config directory

@@ -13,7 +13,7 @@
     dest: /etc/systemd/network/99-wgtor0.network
     owner: root
     group: systemd-network
-    mode: u+rw,g+r,o-rw
+    mode: u+rw,g+r,o+r
   notify: Reload systemd-networkd
 
 - name: Configure nftables for wgtor0
