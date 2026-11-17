@@ -1,4 +1,5 @@
 - ansible.builtin.import_playbook: essential.yml
+- ansible.builtin.import_playbook: net.yml
 - ansible.builtin.import_playbook: shell.yml
 - ansible.builtin.import_playbook: web.yml
 - ansible.builtin.import_playbook: mail.yml

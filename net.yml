@@ -1,0 +1,6 @@
+- name: Setup overlay network tunnels
+  hosts:
+    - gate.ilvokhin.com
+    - mountain.home.ilvokhin.com
+  roles:
+    - { role: wgnet }

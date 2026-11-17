@@ -1,7 +1,6 @@
 - name: Setup VPN machines
   hosts: vpn
   roles:
-    - { role: wgnet }
     - { role: wgvpn }
     - { role: wgtor }
     - { role: tor }
