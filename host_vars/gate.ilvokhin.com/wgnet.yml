@@ -1,4 +1,5 @@
 wgnet_ip: 10.0.0.1
+wgnet_public_ip: true
 
 # Reserved for flame.
 # wgnet_ip: 10.0.0.2

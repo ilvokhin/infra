@@ -16,3 +16,20 @@ AllowedIPs=10.0.0.2/32
 [WireGuardPeer]
 PublicKey=X0Gw37N+AUkZjiyZ9buZ8c2ZzFr+niX3FZjxlyqQq0Q=
 AllowedIPs=10.0.0.3/32
+
+{% for host in groups['all'] if host != inventory_hostname %}
+{% if 'wgnet_ip' in hostvars[host] %}
+# {{ host.split('.')[0] }}
+[WireGuardPeer]
+PublicKey={{ hostvars[host]['wireguard_public_key'] }}
+AllowedIPs={{ hostvars[host]['wgnet_ip'] }}/32
+{# default(false, true) is a weird way to use default value that evaluates to
+false. #}
+{% if hostvars[host]['wgnet_public_ip'] | default(false, true) %}
+Endpoint={{ host }}:51820
+{% if not wgnet_public_ip %}
+PersistentKeepalive=25
+{% endif %}
+{% endif %}
+{% endif %}
+{% endfor %}

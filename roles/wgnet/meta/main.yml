@@ -1,4 +1,3 @@
 dependencies:
-  - role: netfwd
   - role: networkd
   - role: wireguard
